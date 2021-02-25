@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles
+{
+}
+
+@section Scripts
+{
+}
+
+@section Breadcrumb
+{
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Documents</li>
+    </ol>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#">Documents</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="module-menu" role="tabpanel">
+        <div class="row clearfix">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Documents Management</h3>
+                        <div class="card-options">
+                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row clearfix row-deck">
+                            <div class="col-4 col-md-4 offset-xl-3 col-xl-2">
+                                <div class="card">
+                                    <div class="card-body ribbon">
+                                        <a href="@Url.Action("index", "inbox", new { area = "documents" })" class="my_sort_cut text-muted"><i class="fal fa-inbox"></i><span>Inbox</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 col-xl-2">
+                                <div class="card">
+                                    <div class="card-body ribbon">
+                                        <a href="@Url.Action("index", "outbox", new { area = "documents" })" class="my_sort_cut text-muted"><i class="fal fa-paper-plane"></i><span>Outbox</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 col-xl-2">
+                                <div class="card">
+                                    <div class="card-body ribbon">
+                                        <a href="@Url.Action("index", "internal", new { area = "documents" })" class="my_sort_cut text-muted"><i class="fal fa-dot-circle"></i><span>Internal</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <div class="page-title">Reports</div>
+                       <div class="row clearfix row-deck">
+                           <div class="col-4 col-md-4 offset-xl-3 col-xl-2">
+                               <div class="card">
+                                   <div class="card-body ribbon">
+                                       <a href="@Url.Action("InboxList", "report", new { area = "documents" })" class="my_sort_cut text-muted"><i class="fal fa-inbox"></i><span>Inbox List</span></a>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-4 col-md-4 col-xl-2">
+                               <div class="card">
+                                   <div class="card-body ribbon">
+                                       <a href="@Url.Action("OutboxList", "report", new { area = "documents" })" class="my_sort_cut text-muted"><i class="fal fa-paper-plane"></i><span>Outbox List</span></a>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-4 col-md-4 col-xl-2">
+                               <div class="card">
+                                   <div class="card-body ribbon">
+                                       <a href="@Url.Action("InternalList", "report", new { area = "documents" })" class="my_sort_cut text-muted"><i class="fal fa-dot-circle"></i><span>Internal List</span></a>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

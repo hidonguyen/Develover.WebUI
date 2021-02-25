@@ -1,0 +1,95 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model OpeningStock
+
+@{
+    ViewData["Title"] = "Opening Stock Information";
+}
+
+@section Styles
+{
+    <link href="~/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/plugins/summernote/dist/summernote.css" rel="stylesheet" />
+}
+
+@section Scripts
+{
+    <script src="~/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+    <script src="~/bundles/summernote.bundle.js"></script>
+    <script src="~/develover/js/stationery.js"></script>
+    <script src="~/develover/js/stationery.openingstock.js"></script>
+
+    <script>
+        let options = {
+            mode: VoucherMode.VIEW,
+            form: "form-opening-stock",
+            tableId: "table-opening-stock-details",
+            modalId: "modal-add-detail",
+        }
+
+        let openingStock = new OpeningStock(options, @Json.Serialize(Model));
+        openingStock.initialize();
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fal fa-suitcase"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Stationery">Stationery</a></li>
+        <li class="breadcrumb-item"><a href="/stationery/openingstock">Opening Stocks</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        @Html.NewButton(Url.Action("new", "openingstock", new { area = "stationery" }))
+    </li>
+    <li class="nav-item">
+        @Html.EditButton(Url.Action("edit", "openingstock", new { area = "stationery", @id = Model.Id }))
+    </li>
+    <li class="nav-item">
+        @Html.DeleteButton("openingStock.delete();")
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#opening-stock-information">Opening Stock Information</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="opening-stock-information" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fal fa-suitcase mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        @Html.NewButton(Url.Action("new", "openingstock", new { area = "stationery" }))
+                    </li>
+                    <li class="nav-item">
+                        @Html.EditButton(Url.Action("edit", "openingstock", new { area = "stationery", @id = Model.Id }))
+                    </li>
+                    <li class="nav-item">
+                        @Html.DeleteButton("openingStock.delete();")
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                @await Html.PartialAsync($"~/Areas/Stationery/Views/OpeningStock/_Form.cshtml", Model)
+            </div>
+            <div class="card-footer text-right py-2">
+                @await Html.PartialAsync($"~/Views/_AuditInfo.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>

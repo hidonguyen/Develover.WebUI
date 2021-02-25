@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model VehicleUsePurpose
+
+<div class="modal fade" id="modal-vehicle-use-purpose" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="employee" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW USE PURPOSE</h6>
+                <button type="button" class="close" onclick="vehicleUsePurposeModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/VehicleUsePurpose/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="vehicleUsePurposeModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="vehicleUsePurposeModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.vehicleusepurpose.js"></script>
+<script>
+    let vehicleUsePurposeModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-vehicle-use-purpose",
+        modalId: "modal-vehicle-use-purpose"
+    };
+
+    let vehicleUsePurposeModal = new VehicleUsePurpose(vehicleUsePurposeModalOptions, @Json.Serialize(Model));
+    vehicleUsePurposeModal.initialize();
+</script>

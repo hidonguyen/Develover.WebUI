@@ -1,0 +1,54 @@
+﻿@using Develover.WebUI.Extensions;
+
+@{
+    List<SelectListItem> employees = (List<SelectListItem>)ViewData["Employees"];
+    List<SelectListItem> departments = (List<SelectListItem>)ViewData["Departments"];
+    List<SelectListItem> scheduleds = (List<SelectListItem>)ViewData["Scheduleds"];
+}
+
+<div class="modal fade" id="modal-driving" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="Driving" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Drive</h5>
+                <button type="button" class="close" onclick="vehicleInfo.hideModalDriving();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="modal-driving-form" class="form">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group row">
+                        <label class="field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" for="DriverId">Scheduled List</label>
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPicker("ScheduledId", scheduleds)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" for="DriverId">Driver</label>
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPicker("DriverId", employees)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" for="DepartmentId">Department</label>
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPicker("DepartmentId", departments)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" for="Note">Note</label>
+                        <div class="field-group col-sm-10">
+                            <textarea id="Note" class="form-control form-control-sm"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="vehicleInfo.hideModalDriving();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="vehicleInfo.UpdateStatusDriving();">Driving</button>
+            </div>
+        </div>
+    </div>
+</div>

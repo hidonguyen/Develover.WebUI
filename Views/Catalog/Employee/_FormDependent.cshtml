@@ -1,0 +1,179 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model EmployeeDependent
+@{
+
+    List<SelectListItem> genders = (List<SelectListItem>)ViewData["Genders"];
+    List<SelectListItem> maritalStatus = (List<SelectListItem>)ViewData["MaritalStatus"];
+    List<SelectListItem> ethnicGroups = (List<SelectListItem>)ViewData["EthnicGroups"];
+
+}
+<div class="section-body" id="page_header">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+            <ul id="page-header-tab" class="nav nav-tabs page-header-tab">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dependent-general">General</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#dependent-addresses">Addresses</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form id="form-employee-dependent" class="form">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="section-body mt-2" id="page_content">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="dependent-general" role="tabpanel">
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.MiddleName, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.MiddleName, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.LastName, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Relationship, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.Relationship, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.DateOfBirth, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.DateOfBirth, htmlAttributes: new { @class = "form-control form-control-sm datepicker" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.PlaceOfBirth, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-6">
+                            @Html.TextBoxFor(m => m.PlaceOfBirth, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.GenderId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.SelectPickerFor(m => m.GenderId, genders)
+                        </div>
+                        @Html.LabelFor(m => m.MaritalStatusId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.SelectPickerFor(m => m.MaritalStatusId, maritalStatus)
+                        </div>
+                        @Html.LabelFor(m => m.EthnicGroupId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.SelectPickerFor(m => m.EthnicGroupId, ethnicGroups)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.Email, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.Phone, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.AlternativePhone, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-2">
+                            @Html.TextBoxFor(m => m.AlternativePhone, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Note, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = " form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="dependent-addresses" role="tabpanel">
+                    @*PermanentAddress*@
+                    <label class="col-sm-2 col-form-label col-form-label-sm text-sm-left">Permanent Address</label>
+                    @Html.HiddenFor(m => m.PermanentAddressId)
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.PermanentAddress.Line1, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.PermanentAddress.Line1, htmlAttributes: new { @class = "form-control form-control-sm " })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.PermanentAddress.Line2, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.PermanentAddress.Line2, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.PermanentAddress.City, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.PermanentAddress.City, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.PermanentAddress.Country, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.PermanentAddress.Country, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.PermanentAddress.Note, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.TextAreaFor(m => m.PermanentAddress.Note, htmlAttributes: new { @class = " form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <hr />
+                    @*TemporaryAddress*@
+                    <label class="col-sm-2 col-form-label col-form-label-sm text-sm-left">Temporary Address</label>
+                    @Html.HiddenFor(m => m.TemporaryAddressId)
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.TemporaryAddress.Line1, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.TemporaryAddress.Line1, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.TemporaryAddress.Line2, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.TemporaryAddress.Line2, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.TemporaryAddress.City, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.TemporaryAddress.City, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.TemporaryAddress.Country, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.TemporaryAddress.Country, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.TemporaryAddress.Note, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.TextAreaFor(m => m.TemporaryAddress.Note, htmlAttributes: new { @class = " form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

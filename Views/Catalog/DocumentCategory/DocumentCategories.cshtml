@@ -1,0 +1,93 @@
+﻿@using Develover.WebUI.Extensions;
+
+@model CatalogViewModel
+
+@{
+    ViewData["Title"] = "Document Categories";
+}
+
+@section Styles
+{
+    <link href="~/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-table/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
+}
+
+@section Scripts
+{
+    <script src="~/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/tableExport.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/jsPDF/jspdf.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+
+    <script>
+        {
+            $(() => {
+                let columns = @Html.Raw(Json.Serialize(Model.Columns));
+
+                initBootstrapTable('table-document-categories', columns);
+            });
+        }
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fad fa-th-list"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Document Categories</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        @Html.NewButton(Url.Action("newdocumentcategory", "catalog"))
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#base-document-categories-list">Document Categories</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="base-document-categories-list" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fad fa-th-list mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        @Html.NewButton(Url.Action("newdocumentcategory", "catalog"))
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                <div id="toolbar-document-categories" class="page-header">
+                </div>
+                <table id="table-document-categories"
+                       data-toggle="table"
+                       data-toolbar="#toolbar-document-categories"
+                       data-cookie="true"
+                       data-cookie-id-table="cookie-table-document-categories"
+                       data-id-field="id"
+                       data-search="true"
+                       data-show-export="true"
+                       data-pagination="true"
+                       data-sortable="true"
+                       data-sort-name="name"
+                       data-sort-order="asc"
+                       data-mobile-responsive="true"
+                       data-url="@Model.DataUrl">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

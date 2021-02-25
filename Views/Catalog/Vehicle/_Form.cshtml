@@ -1,0 +1,99 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model Vehicle
+@{
+
+    List<SelectListItem> employee = (List<SelectListItem>)ViewData["Employees"];
+    List<SelectListItem> departments = (List<SelectListItem>)ViewData["Departments"];
+
+}
+
+<form id="form-vehicle" class="form">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group row">
+        @Html.LabelFor(m => m.RegistrationNo, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextBoxFor(m => m.RegistrationNo, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.RegistrationDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.RegistrationDate, htmlAttributes: new { @class = "form-control form-control-sm datepicker" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.ManufactureDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.ManufactureDate, htmlAttributes: new { @class = "form-control form-control-sm datepicker" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.PurchaseDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.PurchaseDate, htmlAttributes: new { @class = "form-control form-control-sm datepicker" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.EngineNo, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.EngineNo, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.ChassisNo, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.ChassisNo, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Brand, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Brand, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.ModelNo, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.ModelNo, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Color, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Color, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.Capacity, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Capacity, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.DefaultDriverId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.SelectPickerFor(m => m.DefaultDriverId, employee)
+        </div>
+        @Html.LabelFor(m => m.DefaultDepartmentId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.SelectPickerFor(m => m.DefaultDepartmentId, departments)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Note, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = "summernote inline-editor form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Status, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.CheckBoxFor(m => m.Status, htmlAttributes: new { @class = "form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+</form>

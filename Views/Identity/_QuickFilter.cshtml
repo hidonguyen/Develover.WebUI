@@ -1,0 +1,40 @@
+﻿@using Develover.WebUI.Entities;
+
+@{
+    List<Role> roles = (List<Role>)TempData["Roles"];
+    List<User> users = (List<User>)TempData["Users"];
+    List<UserRole> userRoles = (List<UserRole>)TempData["UserRoles"];
+}
+
+<div class="card mb-2">
+    <div class="card-header px-2 py-1">
+        <a class="collapse-link" id="collapse_group_panel" data-toggle="collapse" href="#collapse_group" style="text-decoration:none;" aria-expanded="true">
+            <h6 class="panel-title mb-0" style="width:100%;">Role permissions</h6>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+    <div id="collapse_group" class="panel-collapse in collapse show" aria-expanded="true">
+        <ul class="pr-2">
+            @foreach (var role in roles)
+            {
+                <li><a href="@Url.Action("authority", "identity", new { type = "role", id = role.Id, name = role.Name, description = role.Description })">@role.Name (@(userRoles.Count(i=>i.RoleId== role.Id)))</a></li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="card mb-2">
+    <div class="card-header px-2 py-1">
+        <a class="collapse-link" id="collapse_position_panel" data-toggle="collapse" href="#collapse_position" style="text-decoration:none;" aria-expanded="true">
+            <h6 class="panel-title mb-0" style="width:100%;">User permissions</h6>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+    <div id="collapse_position" class="panel-collapse in collapse show" aria-expanded="true">
+        <ul class="pr-2">
+            @foreach (var user in users)
+            {
+                <li><a href="@Url.Action("authority", "identity", new { type = "user", id = user.Id, name = user.Name, description = user.Note })">@user.Name</a></li>
+            }
+        </ul>
+    </div>
+</div>

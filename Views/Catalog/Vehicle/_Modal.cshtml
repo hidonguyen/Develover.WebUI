@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model Vehicle
+
+<div class="modal fade" id="modal-vehicle" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="vehicle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW EMPLOYEE</h6>
+                <button type="button" class="close" onclick="vehicleModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/Vehicle/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="vehicleModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="vehicleModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.vehicle.js"></script>
+<script>
+    let vehicleModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-vehicle",
+        modalId: "modal-vehicle"
+    };
+
+    let vehicleModal = new Vehicle(vehicleModalOptions, @Json.Serialize(Model));
+    vehicleModal.initialize();
+</script>

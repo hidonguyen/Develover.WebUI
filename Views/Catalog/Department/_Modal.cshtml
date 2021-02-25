@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model Department
+
+<div class="modal fade" id="modal-department" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="department" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW DEPARMENT</h6>
+                <button type="button" class="close" onclick="departmentModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/Department/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="departmentModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="departmentModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.department.js"></script>
+<script>
+    let departmentModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-department",
+        modalId: "modal-department"
+    };
+
+    let departmentModal = new Department(departmentModalOptions, @Json.Serialize(Model));
+    departmentModal.initialize();
+</script>

@@ -1,0 +1,58 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model VehicleFueling
+
+@{
+    List<SelectListItem> employees = (List<SelectListItem>)ViewData["Employees"];
+}
+
+<form id="form-vehicle-fueling" class="form">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group row">
+        @Html.LabelFor(m => m.IssueDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.IssueDate, htmlAttributes: new { @class = "form-control form-control-sm datepicker text-center" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.No, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.No, htmlAttributes: new { @class = "form-control form-control-sm text-center" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.IssuerId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-6">
+            @Html.SelectPickerFor(m => m.IssuerId,  employees)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Note, "Note", htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+
+    <div class="detail-info">
+        <div id="toolbar-vehicle-fueling-details">
+            @Html.AddItem("modal-add-detail")
+        </div>
+        <table id="table-vehicle-fueling-details"
+               data-toolbar="#toolbar-vehicle-fueling-details"
+               data-cookie="true"
+               data-cookie-id-table="cookie-vehicle-fueling-details"
+               data-id-field="id"
+               data-pagination="true"
+               data-show-footer="true"
+               data-sortable="true"
+               data-sort-name="sequenceNo"
+               data-sort-order="asc"
+               data-mobile-responsive="true">
+        </table>
+    </div>
+</form>
+
+@await Html.PartialAsync($"~/Areas/Vehicle/Views/VehicleFueling/_AddItem.cshtml", new VehicleFuelingItem())

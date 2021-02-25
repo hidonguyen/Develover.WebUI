@@ -1,0 +1,49 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+    ViewData["PageName"] = "page_login";
+}
+
+<!DOCTYPE html>
+<partial name="_CopyrightHeader" />
+<html lang="en">
+<head>
+    <partial name="_Head" />
+</head>
+<body class="mod-bg-1 mod-nav-link @ViewBag.PreemptiveClass">
+    <div class="blankpage-form-field">
+        <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+            <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+                <img src="~/img/@ViewBag.Logo" alt="@ViewBag.AppName" aria-roledescription="logo">
+                <span class="page-logo-text mr-1">@ViewBag.AppName</span>
+                <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+            </a>
+        </div>
+        <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+            <form asp-controller="identity" asp-action="login">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(m => m.ReturnUrl)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Username, "Username", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Username" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, "Password", new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                </div>
+                <div class="form-group text-left">
+                    <div class="custom-control custom-checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "custom-control-input" })
+                        @Html.LabelFor(m => m.RememberMe, " Remember me for the next 30 days", new { @class = "custom-control-label" })
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default float-right">Secure login</button>
+            </form>
+        </div>
+    </div>
+    @*<partial name="_ScriptsBasePlugins" />*@
+</body>
+</html>

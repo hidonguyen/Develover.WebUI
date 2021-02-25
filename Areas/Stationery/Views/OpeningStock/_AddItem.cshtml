@@ -1,0 +1,69 @@
+﻿@using Develover.WebUI.Extensions;
+@using Develover.WebUI.Entities;
+
+@model OpeningStockItem
+@{
+    List<SelectListItem> stockItems = (List<SelectListItem>)ViewData["StockItems"];
+    List<SelectListItem> locations = (List<SelectListItem>)ViewData["Locations"];
+}
+
+<div class="modal fade" id="modal-add-detail" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="Add attachment" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Item</h5>
+                <button type="button" class="close" onclick="openingStock.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="modal-add-detail-form" class="form">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.StockItemId, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPickerFor(m => m.StockItemId, new { selectSize = "", target = "modal-stock-item", postbackClass = "postback-stock-item" }, stockItems)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.StockItem.UnitOfMeasureId, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.TextBoxFor(m => m.StockItem.UnitOfMeasure.Name, htmlAttributes: new { @class = "form-control form-control-sm", @readonly = true })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.LocationId, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPickerFor(m => m.LocationId, new { selectSize = "", target = "modal-location", postbackClass = "postback-location" }, locations)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Quantity, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.Quantity, htmlAttributes: new { @class = "form-control form-control-sm text-sm-right" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.Amount, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.Amount, htmlAttributes: new { @class = "form-control form-control-sm text-sm-right" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Note, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="openingStock.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="openingStock.addItem();">Add</button>
+                <button type="button" class="btn btn-info save-close d-none" onclick="openingStock.addItem(true);">Add & Close</button>
+            </div>
+        </div>
+    </div>
+</div>

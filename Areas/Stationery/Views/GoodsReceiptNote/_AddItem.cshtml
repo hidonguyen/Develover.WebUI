@@ -1,0 +1,48 @@
+﻿<div class="modal fade" id="modal-add-item" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm dòng mới</h5>
+                <button type="button" class="close btn-close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="modal-add-detail-form" class="form was-validated">
+                    @Html.DeveloverHidden("Id")
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            @Html.DeveloverSelect2(id: "StockItemId", label: "Hàng hoá", validation: "required", validationMessage: "Vui lòng chọn hàng hoá!")
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            @Html.DeveloverSelect2(id: "LocationId", label: "Kho hàng", validation: "required", validationMessage: "Vui lòng chọn kho hàng!")
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            @Html.DeveloverTextBox(id: "Quantity", label: "Số lượng", placeholder: "Số lượng")
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            @Html.DeveloverTextBox(id: "Price", label: "Đơn giá", placeholder: "Đơn giá")
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            @Html.DeveloverTextBox(id: "Amount", label: "Thành tiền", placeholder: "Thành tiền")
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-close">Đóng</button>
+                <button type="button" class="btn btn-primary btn-save">Thêm</button>
+                <button type="button" class="btn btn-primary btn-save-close">Thêm và đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model Position
+
+<div class="modal fade" id="modal-position" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="position" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW POSITION</h6>
+                <button type="button" class="close" onclick="positionModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/Position/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="positionModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="positionModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.position.js"></script>
+<script>
+    let positionModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-position",
+        modalId: "modal-position"
+    };
+
+    let positionModal = new Position(positionModalOptions, @Json.Serialize(Model));
+    positionModal.initialize();
+</script>

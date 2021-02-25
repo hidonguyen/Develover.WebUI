@@ -1,0 +1,19 @@
+﻿{
+  "version": "1",
+  "lists": [
+    {
+      "title": "Danh mục",
+      "icon": "fal fa-info-circle",
+      "items": [
+        {
+          "title": "Chi nhánh",
+          "href": "/branches"
+        },
+        {
+          "title": "Khai báo tiếp ở đây",
+          "href": "#"
+        }
+      ]
+    }
+  ]
+}

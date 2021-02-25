@@ -1,0 +1,225 @@
+﻿@using Develover.WebUI.Areas.Vehicle.Models;
+@using Develover.WebUI.Entities;
+
+@model VehicleMapViewModel
+
+@{
+    ViewData["Title"] = "Vehicle Management";
+}
+
+@section Styles
+{
+}
+
+@section Scripts
+{
+    <script src="~/develover/js/vehicle.js"></script>
+    <script>
+        let optionVehicleMap = {
+            form: "ul-vehicle-info",
+            modalDriving: "modal-driving",
+            modalScheduled: "modal-scheduled",
+            modalRepairing: "modal-Repairing"
+        }
+
+        let vehicleInfo = new VehicleInfo(optionVehicleMap, @Json.Serialize(Model));
+        vehicleInfo.initialize();
+    </script>
+
+}
+
+@section Breadcrumb
+{
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Vehicles</li>
+    </ol>
+}
+
+@section Functions
+{
+
+    <li class="nav-item">
+        <a href="@Url.Action("schedulelist", "report", new { area = "vehicle" })" class="btn btn-outline-secondary btn-sm"><i class="fal fa-inbox"></i><span>Schedule List</span></a>
+
+    </li>
+    <li class="nav-item">
+        <a href="@Url.Action("repairlist", "report", new { area = "vehicle" })" class="btn btn-outline-secondary btn-sm"><i class="fal fa-paper-plane"></i><span>Repair List</span></a>
+
+    </li>
+    <li class="nav-item">
+        <a href="@Url.Action("fuelinglist", "report", new { area = "vehicle" })" class="btn btn-outline-secondary btn-sm"><i class="fal fa-dot-circle"></i><span>Fueling List</span></a>
+
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#">Vehicles</a></li>
+}
+
+@section ReportFilterTab
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#righttab-report-filter">Information</a></li>
+}
+
+@section ReportFilter
+{
+    <div class="tab-pane fade show active" id="righttab-report-filter" role="tabpanel">
+        <div class="row pb-3 btn-func-car">
+            <a href="javascript:void(0)" onclick="vehicleInfo.ShowModalDriving();this.blur();" data-btn-func-car-value="true" data-btn-func-car="btn-func-driving" class="ml-2 btn btn-outline-@(Model.VehicleInfo.IsDriving ? "warning":"secondary") btn-sm @(Model.VehicleInfo.IsRepairing?"d-none":"") "><span class="">@( Model.VehicleInfo.IsDriving ? "Driving" : "Drive")</span> </a>
+            <a href="javascript:void(0)" onclick="vehicleInfo.ShowModalScheduled();this.blur();" data-btn-func-car-value="true" data-btn-func-car="btn-func-scheduled" class="ml-1 btn btn-outline-@(Model.VehicleInfo.IsScheduled ? "primary":"secondary") btn-sm  @(Model.VehicleInfo.IsRepairing?"d-none":"")"><span class="">@( Model.VehicleInfo.IsScheduled ? "Scheduled" : "Schedule")</span></a>
+            <a href="javascript:void(0)" onclick="vehicleInfo.ShowModalRepairing();this.blur();" data-btn-func-car-value="true" data-btn-func-car="btn-func-repairing" class="ml-1 btn btn-outline-@(Model.VehicleInfo.IsRepairing ? "danger":"secondary") btn-sm @(Model.VehicleInfo.IsDriving?"d-none":"")"><span class="">@( Model.VehicleInfo.IsRepairing ? "Repairing" : "Repair")</span></a>
+        </div>
+        <ul class="setting-list list-unstyled mt-1 setting_switch" id="ul-vehicle-info">
+            @Html.HiddenFor(m => m.VehicleInfo.Id)
+            @Html.HiddenFor(m => m.VehicleInfo.DefaultDepartmentId)
+            @Html.HiddenFor(m => m.VehicleInfo.DefaultDriverId)
+            @Html.HiddenFor(m => m.VehicleInfo.CurrentVehicleRepairId)
+            @Html.HiddenFor(m => m.VehicleInfo.CurrentVehicleScheduleId)
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.RegistrationNo, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="RegistrationNo">@Html.DisplayFor(m => m.VehicleInfo.RegistrationNo)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.EngineNo, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="EngineNo">@Html.DisplayFor(m => m.VehicleInfo.EngineNo)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.ChassisNo, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="ChassisNo">@Html.DisplayFor(m => m.VehicleInfo.ChassisNo)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.Brand, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="Brand">@Html.DisplayFor(m => m.VehicleInfo.Brand)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.ModelNo, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="ModelNo">@Html.DisplayFor(m => m.VehicleInfo.ModelNo)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.Color, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="Color">@Html.DisplayFor(m => m.VehicleInfo.Color)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.Capacity, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="Capacity">@Html.DisplayFor(m => m.VehicleInfo.Capacity)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.DefaultDriver, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="DefaultDriver">@Html.DisplayFor(m => m.VehicleInfo.DefaultDriver)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.DefaultDepartment, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="DefaultDepartment">@Html.DisplayFor(m => m.VehicleInfo.DefaultDepartment)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.IsDriving, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="IsDriving">@Html.DisplayFor(m => m.VehicleInfo.IsDrivingText)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.IsScheduled, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="IsScheduled">@Html.DisplayFor(m => m.VehicleInfo.IsScheduledText)</span>
+                </label>
+            </li>
+            <li class="border-bottom">
+                <label class="custom-switch">
+                    @Html.LabelFor(m => m.VehicleInfo.IsRepairing, htmlAttributes: new { @class = "custom-switch-description w-25" })
+                    <span class="w-75 ml-3 text-right" id="IsRepairing">@Html.DisplayFor(m => m.VehicleInfo.IsRepairingText)</span>
+                </label>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="module-menu" role="tabpanel">
+        <div class="row clearfix">
+            <div class="col-xl-12">
+                <div class="report card">
+                    <div class="card-header">
+                        <h3 class="card-title">Vehicles Management</h3>
+                        <div class="card-options">
+                            <a href="javascript:void(0)" class="" title="Show filter" onclick="vehicleInfo.LoadStatus();"><i class="far fa-sync"></i></a>
+                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                            <a href="javascript:void(0)" class="right_tab" title="Show filter"><i class="fad fa-filter"></i></a>
+                        </div>
+                    </div>
+                    <div class="vehicles card-body pt-0 ">
+                        <div class="vehicle ml-3 mb-3 text-right">
+                            <span class="mr-3 text-secondary"><i class="fad fa-car-garage fs-3"></i> Available</span>
+                            <span class="mr-3 text-primary"><i class="fad fa-car-garage fs-3"><span class="badge badge-primary vehicle-scheduled"></span></i> Scheduled</span>
+                            <span class="mr-3 text-success"><i class="fad fa-car-side fs-3"></i> Driving</span>
+                            <span class="mr-3 text-danger"><i class="fad fa-car-mechanic fs-3"></i> Repairing</span>
+                        </div>
+
+                        <div class="row clearfix row-deck">
+                            @foreach (var vehicle in Model.Vehicles)
+                            {
+                                var statusClass = "fa-car-garage text-secondary";
+
+                                if (vehicle.IsScheduled)
+                                {
+                                    statusClass = "fa-car-garage text-primary";
+                                }
+
+                                if (vehicle.IsDriving)
+                                {
+                                    statusClass = "fa-car-side text-success";
+                                }
+                                else if (vehicle.IsRepairing)
+                                {
+                                    statusClass = "fa-car-mechanic text-danger";
+                                }
+
+
+                                <div class="col-4 col-md-4 col-xl-2">
+                                    <div class="card vehicle">
+                                        <a id="vehicle_@vehicle.Id" href="javascript:void(0)" class="my_sort_cut text-muted" onclick="vehicleInfo.LoadInfo('@vehicle.Id')">
+                                            <div class="card-body ribbon py-4">
+                                                <i class="fad @statusClass"><span class="badge badge-primary vehicle-scheduled @(vehicle.IsScheduled ? "" : "d-none")"></span></i>
+                                            </div>
+                                            <div class="card-footer card-title pt-2 px-0 pb-0 m-0 text-center">
+                                                <span class="d-block">A. Trung</span>
+                                                <span class="border-top p-2 text-muted d-block"><small>@vehicle.RegistrationNo</small></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@await Html.PartialAsync($"~/Areas/Vehicle/Views/Home/_Driving.cshtml")
+
+@await Html.PartialAsync($"~/Areas/Vehicle/Views/Home/_Scheduled.cshtml", new VehicleSchedule() { DepartureDate=DateTime.Now,ReturnDate=DateTime.Now})
+
+@await Html.PartialAsync($"~/Areas/Vehicle/Views/Home/_Repairing.cshtml", new VehicleRepair() { EstimatedCompletionDate= DateTime.Now})

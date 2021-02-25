@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model User
+
+<div class="modal fade" id="modal-user" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="user" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW USER</h6>
+                <button type="button" class="close" onclick="userModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Identity/User/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="userModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="userModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.user.js"></script>
+<script>
+    let userModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-user",
+        modalId: "modal-user"
+    };
+
+    let userModal = new User(userModalOptions, @Json.Serialize(Model));
+    userModal.initialize();
+</script>

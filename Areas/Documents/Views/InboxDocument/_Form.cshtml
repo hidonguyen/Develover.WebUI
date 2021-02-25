@@ -1,0 +1,191 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model InboxDocument
+
+@{
+    List<SelectListItem> types = (List<SelectListItem>)ViewData["Types"];
+    List<SelectListItem> departments = (List<SelectListItem>)ViewData["Departments"];
+    List<SelectListItem> employees = (List<SelectListItem>)ViewData["Employees"];
+    List<SelectListItem> publishedPlaces = (List<SelectListItem>)ViewData["PublishedPlaces"];
+    List<SelectListItem> documentStatus = (List<SelectListItem>)ViewData["DocumentStatus"];
+}
+
+<form id="form-inbox-document" class="form">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group row">
+        @Html.LabelFor(m => m.DocumentTypeId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.DocumentTypeId, new { selectSize = "", target = "modal-document-type", postbackClass = "postback-document-type" }, types)
+        </div>
+        @Html.LabelFor(m => m.IssueDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.IssueDate, htmlAttributes: new { @class = "form-control form-control-sm text-center datepicker" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.HiddenFor(m => m.SequenceNo)
+        @Html.LabelFor(m => m.RefNo, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.RefNo, htmlAttributes: new { @class = "form-control form-control-sm text-center" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.DepartmentId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.DepartmentId, departments)
+        </div>
+        @Html.LabelFor(m => m.ReceiverId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.ReceiverId, employees)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.ApproverId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.ApproverId, employees)
+        </div>
+        @Html.LabelFor(m => m.SignerId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.SignerId, employees)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.DocumentNo, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.DocumentNo, htmlAttributes: new { @class = "form-control form-control-sm text-center" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.PublishedDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.PublishedDate, htmlAttributes: new { @class = "form-control form-control-sm text-center datepicker" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.PublishedPlaceId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.PublishedPlaceId, new { selectSize = "", target = "modal-published-place", postbackClass = "postback-published-place" }, publishedPlaces)
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Title, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextBoxFor(m => m.Title, htmlAttributes: new { @class = "form-control form-control-sm", @rows = "2" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextAreaFor(m => m.Description, htmlAttributes: new { @class = "form-control form-control-sm", @rows = "3" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Content, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextAreaFor(m => m.Content, htmlAttributes: new { @class = "summernote form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.TotalPages, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.TotalPages, htmlAttributes: new { @class = "form-control form-control-sm text-sm-right" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.DocumentStatusId, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.SelectPickerFor(m => m.DocumentStatusId, new { selectSize = "", target = "modal-document-status", postbackClass = "postback-document-status" }, documentStatus)
+        </div>
+        @Html.LabelFor(m => m.DocumentStatusDate, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-2">
+            @Html.TextBoxFor(m => m.DocumentStatusDate, htmlAttributes: new { @class = "form-control form-control-sm text-center datepicker" })
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.DocumentStatusNote, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+
+    <div class="section-body mt-4">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul id="page-header-tab" class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#attachments">Attachments</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#appendices">Appendices</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-body mt-2">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="attachments" role="tabpanel">
+                    <div class="document-attachments">
+                        <div id="toolbar-document-attachments">
+                            <a class="btn btn-sm text-primary add-attachment float-left" title="Add attachment (Z+I)" href="javascript:void(0);" data-hotkey="Z+I" data-toggle="modal" data-target="#modal-add-attachment" onclick="this.blur();">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Add attachment</span>
+                            </a>
+                        </div>
+                        <table id="table-document-attachments"
+                               data-toolbar="#toolbar-document-attachments"
+                               data-cookie="true"
+                               data-cookie-id-table="cookie-document-attachments"
+                               data-id-field="id"
+                               data-unique-id="id"
+                               data-pagination="true"
+                               data-show-footer="true"
+                               data-sortable="true"
+                               data-sort-name="sequenceNo"
+                               data-sort-order="asc"
+                               data-server-sort="false"
+                               data-mobile-responsive="true">
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="appendices" role="tabpanel">
+                    <div class="document-appendices">
+                        <div id="toolbar-document-appendices">
+                            <a class="btn btn-sm text-primary add-appendix float-left" title="Add appendix (Z+P)" href="javascript:void(0);" data-hotkey="Z+P" data-toggle="modal" data-target="#modal-add-appendix" onclick="this.blur();">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Add appendix</span>
+                            </a>
+                        </div>
+                        <table id="table-document-appendices"
+                               data-toolbar="#toolbar-document-appendices"
+                               data-cookie="true"
+                               data-cookie-id-table="cookie-document-appendices"
+                               data-id-field="id"
+                               data-unique-id="id"
+                               data-pagination="true"
+                               data-show-footer="true"
+                               data-sortable="true"
+                               data-sort-name="appendixNo"
+                               data-sort-order="asc"
+                               data-server-sort="false"
+                               data-mobile-responsive="true">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@await Html.PartialAsync($"~/Areas/Documents/Views/InboxDocument/_AddAttachment.cshtml")
+@await Html.PartialAsync($"~/Areas/Documents/Views/InboxDocument/_AddAppendix.cshtml")
+
+@await Html.PartialAsync($"~/Views/Catalog/DocumentType/_Modal.cshtml", new DocumentType { Id = Guid.NewGuid(), Status = true })
+@await Html.PartialAsync($"~/Views/Catalog/PublishedPlace/_Modal.cshtml", new PublishedPlace { Id = Guid.NewGuid(), Status = true })
+@await Html.PartialAsync($"~/Views/Catalog/DocumentStatus/_Modal.cshtml", new DocumentStatus { Id = Guid.NewGuid(), Status = true })
+
+
+

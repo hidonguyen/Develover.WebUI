@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewData["PageName"] = "intel_analytics_dashboard";
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Analytics <span class='fw-300'>Dashboard</span>";
+    ViewData["PageDescription"] = "Building Web apps with ASP.NET Core";
+}
+
+<div class="text-center">
+    @Html.AddItem("modal-branch")
+</div>
+
+@await Html.PartialAsync($"~/Views/Branches/_Modal.cshtml")
+@section ScriptsBlock
+{
+    <script src="~/develover/js/catalog.js"></script>
+    <script src="~/develover/js/catalog.branch.js"></script>
+}

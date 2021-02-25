@@ -1,0 +1,25 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model EmployeeDependent
+
+<div class="modal fade" id="modal-employee-dependent" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="Add Dependent" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Dependent</h5>
+                <button type="button" class="close" onclick="employeeDependentModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/Employee/_FormDependent.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="employeeDependentModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="employeeDependentModal.addDependent();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+

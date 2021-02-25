@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model DocumentStatus
+
+<div class="modal fade" id="modal-document-status" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="document-status" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW DOCUMENT STATUS</h6>
+                <button type="button" class="close" onclick="documentStatusModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/DocumentStatus/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="documentStatusModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="documentStatusModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.documentstatus.js"></script>
+<script>
+    let documentStatusModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-document-status",
+        modalId: "modal-document-status"
+    };
+
+    let documentStatusModal = new DocumentStatus(documentStatusModalOptions, @Json.Serialize(Model));
+    documentStatusModal.initialize();
+</script>

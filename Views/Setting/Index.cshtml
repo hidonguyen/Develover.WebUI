@@ -1,0 +1,243 @@
+﻿@using Develover.WebUI.Extensions;
+@using Develover.WebUI.Entities;
+
+@model DeveloverSetting
+
+@{
+    ViewData["Title"] = "Settings";
+    List<SelectListItem> currencies = (List<SelectListItem>)ViewData["Currencies"];
+    List<SelectListItem> branchs = (List<SelectListItem>)ViewData["Branchs"];
+}
+
+@section Styles
+{
+}
+
+@section Scripts
+{
+    <script src="~/develover/js/site.develoversetting.js"></script>
+    <script>
+        let options = {
+            formLocalization: "form-settings-localization",
+            formSMTP: "form-settings-smtp",
+        }
+        let develover = new DeveloverSetting(options, @Json.Serialize(Model));
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fal fa-cogs"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Settings</li>
+    </ol>
+}
+
+@section Functions
+{
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Localization">Localization</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Email_Settings">Email</a></li>
+}
+
+
+<div class="tab-content">
+    <div class="tab-pane active" id="Localization">
+        <div class="card">
+            <div class="card-header py-2">
+                <h3 class="card-title mr-auto"><i class="fad fa-globe-stand"></i> Localization</h3>
+                <div class="card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+            </div>
+            <form id="form-settings-localization" class="form">
+                <div class="card-body">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="form-group row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.BranchId, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.SelectPickerFor(m => m.BranchId, branchs)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.CurrencyId, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.SelectPickerFor(m => m.CurrencyId, currencies)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.FormatDate, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.SelectPickerFor(m => m.FormatDate, Model.AvailableFormatDates)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="row col-md-6 col-sm-12">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.DecimalSymbol, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.SelectPickerFor(m => m.DecimalSymbol, Model.AvailableDecimalSymbols)
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ThousandsSymbol, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.SelectPickerFor(m => m.ThousandsSymbol, Model.AvailableThousandsSymbols)
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.RoundPacking, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.TextBoxFor(m => m.RoundPacking, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.RoundQuantity, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.TextBoxFor(m => m.RoundQuantity, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.RoundAmount, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.TextBoxFor(m => m.RoundAmount, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.RoundAmountVND, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.TextBoxFor(m => m.RoundAmountVND, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row col-md-6 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
+                                @Html.LabelFor(m => m.StructureNo, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                <br />
+                                <small>
+                                    <span class="font-weight-bold">Phrase:</span>Year:{YYYY},{YY}, Month:{MM},{M},Day:{DD},{D}, VoucherNo :{NO}
+                                </small>
+                                <br />
+                                <small>
+                                    <span class="font-weight-bold">Separator:</span> /, \, :, -, space
+                                </small>
+                                @Html.TextBoxFor(m => m.StructureNo, htmlAttributes: new { @class = "form-control form-control-sm text-uppercase" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.LenghtNo, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.TextBoxFor(m => m.LenghtNo, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.TypeNo, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                    @Html.SelectPickerFor(m => m.TypeNo, Model.TypeNos)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right py-2">
+                    @Html.SaveButton("develover.Localizationsave();")
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="tab-pane" id="Email_Settings">
+        <div class="card">
+            <div class="card-header py-2 ">
+                <h3 class="card-title mr-auto"><i class="fal fa-paper-plane"></i> SMTP Email Settings</h3>
+                <div class="card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+            </div>
+            <form id="form-settings-smtp" class="form">
+                <div class="card-body">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="form-group">
+                        <label class="fancy-radio custom-color-green"><input name="gender3" value="SMTP" type="radio" checked><span><i></i>SMTP</span></label>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.EmailFromAddress, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.EmailFromAddress, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.EmailsFromName, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.EmailsFromName, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SMTPHost, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.SMTPHost, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SMTPPort, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.SMTPPort, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SMTPUser, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.SMTPUser, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SMTPPassword, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.SMTPPassword, htmlAttributes: new { @class = "form-control form-control-sm", @type = "password" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SMTPSecurity, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.SelectPickerFor(m => m.SMTPSecurity, Model.AvailableSMTPSecurityProtocols)
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SMTPAuthenticationDomain, htmlAttributes: new { @class = "col-form-label col-form-label-sm text-sm-right" })
+                                @Html.TextBoxFor(m => m.SMTPAuthenticationDomain, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right py-2">
+                    @Html.SaveButton("develover.SMTPsave();")
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model Currency
+
+@{
+    ViewData["Title"] = "Currency's Information";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/plugins/summernote/dist/summernote.css" />
+}
+
+@section Scripts
+{
+    <script src="~/bundles/summernote.bundle.js"></script>
+    <script src="~/js/page/summernote.js"></script>
+    <script src="~/develover/js/catalog.currency.js"></script>
+
+    <script>
+        let options = {
+            mode: CatalogMode.VIEW,
+            form: "form-currency"
+        }
+
+        let currency = new Currency(options, @Json.Serialize(Model));
+        currency.initialize();
+    </script>
+}
+
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fad fa-money-bill-alt"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/identity/currencies">Currencies</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        @Html.NewButton(Url.Action("newcurrency", "identity"))
+    </li>
+    <li class="nav-item">
+        @Html.EditButton(Url.Action("editcurrency", "identity", new { @id = Model.Id }))
+    </li>
+    <li class="nav-item">
+        @Html.DeleteButton("currency.delete();")
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#currency-information">Currency's Information</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="currency-information" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fad fa-money-bill-alt mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        @Html.NewButton(Url.Action("newcurrency", "identity"))
+                    </li>
+                    <li class="nav-item">
+                        @Html.EditButton(Url.Action("editcurrency", "identity", new { @id = Model.Id }))
+                    </li>
+                    <li class="nav-item">
+                        @Html.DeleteButton("currency.delete();")
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                @await Html.PartialAsync($"~/Views/Identity/Currency/_Form.cshtml", Model)
+            </div>
+            <div class="card-footer text-right py-2">
+                @await Html.PartialAsync($"~/Views/_AuditInfo.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model Division
+
+<div class="modal fade" id="modal-division" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="division" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW DIVISION</h6>
+                <button type="button" class="close" onclick="divisionModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/Division/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="divisionModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="divisionModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.division.js"></script>
+<script>
+    let divisionModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-division",
+        modalId: "modal-division"
+    };
+
+    let divisionModal = new Division(divisionModalOptions, @Json.Serialize(Model));
+    divisionModal.initialize();
+</script>

@@ -1,0 +1,186 @@
+﻿@using Develover.WebUI.Areas.Stationery.Models;
+@using Develover.WebUI.Extensions;
+
+@model ReportStationeryViewModel
+
+@{
+    ViewData["Title"] = "Issue Note List";
+
+    List<SelectListItem> departments = (List<SelectListItem>)ViewData["Departments"];
+    List<SelectListItem> receivers = (List<SelectListItem>)ViewData["Receivers"];
+    List<SelectListItem> stockItems = (List<SelectListItem>)ViewData["StockItems"];
+    List<SelectListItem> locations = (List<SelectListItem>)ViewData["Locations"];
+}
+
+@section Styles
+{
+    <link href="~/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-table/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
+}
+
+@section Scripts
+{
+    <script src="~/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/tableExport.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/jsPDF/jspdf.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+
+    <link rel="stylesheet" href="~/plugins/bootstrap-table/extensions/treegrid/css/jquery.treegrid.css" />
+    <script src="~/plugins/bootstrap-table/extensions/treegrid/js/jquery.cookie.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/treegrid/js/jquery.treegrid.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+
+    <script src="~/develover/js/report.issuenotelist.js"></script>
+
+    <script>
+        let options = {
+            filterFormId: "form-issue-note-list-filter",
+            tableId: "table-issue-note-list"
+        }
+
+        let issueNoteList = new IssueNoteList(options, @Json.Serialize(Model));
+        issueNoteList.initialize();
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fal fa-suitcase"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/stationery">Stationery</a></li>
+        <li class="breadcrumb-item"><a href="/stationery/issue-note">Issue Note</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Report</li>
+    </ol>
+}
+
+@section Functions
+{
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#issue-note-list">Issue Note List</a></li>
+}
+
+@section ReportFilterTab
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#righttab-report-filter">Advanced Filter</a></li>
+}
+
+@section ReportFilter
+{
+    <div class="tab-pane fade show active" id="righttab-report-filter" role="tabpanel">
+        <form id="form-issue-note-list-filter" class="form">
+            <div class="form-group col-sm-12 row">
+                <label class="col-sm-12 col-form-label col-form-label-sm">From date</label>
+                <div class="field-group col-sm-12 row">
+                    <input type="checkbox" id="FilterFromDate" name="FilterFromDate" class="col-sm-2 form-control form-control-sm mt-2" />
+                    <input type="text" id="FromDate" name="FromDate" class="col-sm-10 datepicker form-control form-control-sm text-center" />
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="form-group col-sm-12 row">
+                <label class="col-sm-12 col-form-label col-form-label-sm">Until date</label>
+                <div class="field-group col-sm-12 row">
+                    <input type="checkbox" id="FilterUntilDate" name="FilterUntilDate" class="col-sm-2 form-control form-control-sm mt-2" />
+                    <input type="text" id="UntilDate" name="UntilDate" class="col-sm-10 datepicker form-control form-control-sm text-center" />
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="form-group col-sm-12 row">
+                <label class="col-sm-12 col-form-label col-form-label-sm">Department</label>
+                <div class="field-group col-sm-12 row">
+                    @Html.SelectPicker("DepartmentId", departments)
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="form-group col-sm-12 row">
+                <label class="col-sm-12 col-form-label col-form-label-sm">Receiver</label>
+                <div class="field-group col-sm-12 row">
+                    @Html.SelectPicker("ReceiverId", receivers)
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="form-group col-sm-12 row">
+                <label class="col-sm-12 col-form-label col-form-label-sm">Stock Item</label>
+                <div class="field-group col-sm-12 row">
+                    @Html.SelectPicker("StockItemId", stockItems)
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="form-group col-sm-12 row">
+                <label class="col-sm-12 col-form-label col-form-label-sm">Location</label>
+                <div class="field-group col-sm-12 row">
+                    @Html.SelectPicker("LocationId", locations)
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="issue-note-list" role="tabpanel">
+        <div class="report card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fas fa-file-invoice mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                    <a href="javascript:void(0)" class="right_tab" title="Show filter"><i class="fad fa-filter"></i></a>
+                </div>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                <div id="toolbar-issue-note-list">
+                    <div id="report-quick-filter" class="selectgroup">
+                        <label class="selectgroup-item">
+                            <input type="radio" name="intensity" value="Today" class="selectgroup-input">
+                            <span class="selectgroup-button text-nowrap">Today</span>
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="intensity" value="Yesterday" class="selectgroup-input">
+                            <span class="selectgroup-button text-nowrap">Yesterday</span>
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="intensity" value="ThisWeek" class="selectgroup-input">
+                            <span class="selectgroup-button text-nowrap">This week</span>
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="intensity" value="ThisMonth" class="selectgroup-input" checked>
+                            <span class="selectgroup-button text-nowrap">This month</span>
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="intensity" value="ThisQuarter" class="selectgroup-input">
+                            <span class="selectgroup-button text-nowrap">This quarter</span>
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="intensity" value="ThisYear" class="selectgroup-input">
+                            <span class="selectgroup-button text-nowrap">This year</span>
+                        </label>
+                    </div>
+                </div>
+                <table id="table-issue-note-list"
+                       data-toggle="table"
+                       data-toolbar="#toolbar-issue-note-list"
+                       data-cookie="true"
+                       data-cookie-id-table="cookie-table-issue-note-list"
+                       data-id-field="id"
+                       data-search="true"
+                       data-show-export="true"
+                       data-pagination="true"
+                       data-sortable="true"
+                       data-sort-name="date"
+                       data-sort-order="desc"
+                       data-show-footer="true"
+                       data-mobile-responsive="true">
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

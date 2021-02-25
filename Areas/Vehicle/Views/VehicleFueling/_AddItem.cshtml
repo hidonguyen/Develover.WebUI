@@ -1,0 +1,64 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model VehicleFuelingItem
+
+@{
+    List<SelectListItem> vehicles = (List<SelectListItem>)ViewData["Vehicles"];
+    List<SelectListItem> employees = (List<SelectListItem>)ViewData["Employees"];
+}
+
+<div class="modal fade" id="modal-add-detail" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="Add item" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add item</h5>
+                <button type="button" class="close" onclick="fueling.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="modal-add-detail-form" class="form">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.VehicleId, htmlAttributes: new { @class="field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPickerFor(m => m.VehicleId, new { selectSize = "", target = "modal-vehicle", postbackClass = "postback-vehicle" }, vehicles)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.ReceiverId, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.SelectPickerFor(m => m.ReceiverId, new { selectSize = "", target = "modal-employee", postbackClass = "postback-employee" }, employees)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Quantity, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.Quantity, htmlAttributes: new { @class = "form-control form-control-sm text-sm-right" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        @Html.LabelFor(m => m.CurrentKM, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-4">
+                            @Html.TextBoxFor(m => m.CurrentKM, htmlAttributes: new { @class = "form-control form-control-sm text-sm-right" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Note, htmlAttributes: new { @class = "field-group col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                        <div class="field-group col-sm-10">
+                            @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = "form-control form-control-sm" })
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="fueling.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="fueling.addItem();">Add</button>
+                <button type="button" class="btn btn-info save-close d-none" onclick="fueling.addItem(true);">Add & Close</button>
+            </div>
+        </div>
+    </div>
+</div>

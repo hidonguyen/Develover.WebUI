@@ -1,0 +1,109 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+@section Styles
+{
+    <link href="~/plugins/summernote/dist/summernote.css" rel="stylesheet" />
+
+    <link href="~/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/plugins/bootstrap-table/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css" rel="stylesheet">
+}
+
+@section Scripts
+{
+    <script src="~/bundles/summernote.bundle.js"></script>
+    <script src="~/js/page/summernote.js"></script>
+    <script src="~/develover/js/catalog.employee.js"></script>
+
+
+    <script src="~/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/tableExport.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/jsPDF/jspdf.min.js"></script>
+    <script src="~/plugins/bootstrap-table/Plugin/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+
+    <script>
+        let employeeDependentModalOptions = {
+            mode: CatalogMode.EDIT,
+        form: "form-employee-dependent",
+        modalId: "modal-employee-dependent",
+        tableId: "table-employee-dependents"
+    };
+
+    var employeeDependentModal = new EmployeeDependent(employeeDependentModalOptions, @Json.Serialize(Model));
+    employeeDependentModal.initialize();
+    </script>
+    <script>
+        let options = {
+            mode: CatalogMode.EDIT,
+            form: "form-employee",
+        }
+        let employee = new Employee(options, @Json.Serialize(Model));
+        employee.initialize();
+    </script>
+
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="far fa-user-tie"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/catalog/employees">Employees</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        @Html.CancelButton()
+    </li>
+    <li class="nav-item">
+        @Html.SaveButton("employee.save();")
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#employee-information">Employee's Information</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="employee-information" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="far fa-user-tie mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        @Html.CancelButton()
+                    </li>
+                    <li class="nav-item">
+                        @Html.SaveButton("employee.save();")
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                @await Html.PartialAsync($"~/Views/Catalog/Employee/_Form.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@await Html.PartialAsync($"~/Views/Catalog/Employee/_AddDependent.cshtml", new EmployeeDependent() { Id = Guid.NewGuid(), Status = true })
+@await Html.PartialAsync($"~/Views/Catalog/Division/_Modal.cshtml", new Division { Id = Guid.NewGuid(), Status = true })
+@await Html.PartialAsync($"~/Views/Catalog/Position/_Modal.cshtml", new Position { Id = Guid.NewGuid(), Status = true })
+@await Html.PartialAsync($"~/Views/Catalog/Department/_Modal.cshtml", new Department { Id = Guid.NewGuid(), Status = true })

@@ -1,0 +1,43 @@
+﻿@model ErrorViewModel
+@{ ViewData["Title"] = "Error"; }
+
+@section Styles
+{
+}
+
+@section Scripts
+{
+}
+
+@section Breadcrumb
+{
+}
+
+@section Functions
+{
+}
+
+@section Tabs
+{
+}
+
+<div class="row">
+    <div class="quick-filter col-lg-2 d-none d-lg-block">
+
+    </div>
+    <div class="filtered-data col-lg-10 col-sm-12">
+        <div class="page-header clearfix">
+            <div class="page-title text-danger float-left" style="font-size: 1.5rem">
+                <span>Access denied.</span>
+            </div>
+        </div>
+        <h4 class="text-danger">You don't have permission to access this resource.</h4>
+
+        @if (Model.ShowRequestId)
+        {
+            <p>
+                <strong>Request ID:</strong> <code>@Model.RequestId</code>
+            </p>}
+    </div>
+</div>
+

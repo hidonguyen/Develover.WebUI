@@ -1,0 +1,80 @@
+﻿@using Develover.WebUI.Entities;
+
+@model User
+
+@{
+    List<SelectListItem> roles = (List<SelectListItem>)ViewData["Roles"];
+    List<SelectListItem> branches = (List<SelectListItem>)ViewData["Branches"];
+}
+
+<form id="form-user" class="form">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.Initial, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Initial, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Username, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.DateOfBirth, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.DateOfBirth, "{0:dd/MM/yyyy}", htmlAttributes: new { @class = "datepicker form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Phone, htmlAttributes: new { @type = "phone", @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+        @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.TextBoxFor(m => m.Email, htmlAttributes: new { @type = "email", @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.SelectedRoles, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.ListBoxFor(m => m.SelectedRoles, roles, htmlAttributes: new { @class = "multiselect form-control form-control-sm text-wrap" })
+        </div>
+        @Html.LabelFor(m => m.SelectedBranches, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-4">
+            @Html.ListBoxFor(m => m.SelectedBranches, branches, htmlAttributes: new { @class = "multiselect form-control form-control-sm text-wrap" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextAreaFor(m => m.Address, htmlAttributes: new { @class = "form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Note, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = "summernote inline-editor form-control form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Status, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+        <div class="field-group col-sm-10">
+            @Html.CheckBoxFor(m => m.Status, htmlAttributes: new { @class = "form-control-sm" })
+            <div class="invalid-feedback"></div>
+        </div>
+    </div>
+</form>

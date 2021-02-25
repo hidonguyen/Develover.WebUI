@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model LeaveType
+
+<div class="modal fade" id="modal-leave-type" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="leave-type" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW LEAVE TYPE</h6>
+                <button type="button" class="close" onclick="leaveTypeModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/LeaveType/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="leaveTypeModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="leaveTypeModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.leavetype.js"></script>
+<script>
+    let leaveTypeModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-leave-type",
+        modalId: "modal-leave-type"
+    };
+
+    let leaveTypeModal = new LeaveType(leaveTypeModalOptions, @Json.Serialize(Model));
+    leaveTypeModal.initialize();
+</script>

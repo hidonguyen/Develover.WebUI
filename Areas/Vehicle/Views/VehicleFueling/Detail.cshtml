@@ -1,0 +1,93 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model VehicleFueling
+
+@{
+    ViewData["Title"] = "Fueling's Information";
+}
+
+@section Styles
+{
+    <link href="~/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+}
+
+@section Scripts
+{
+    <script src="~/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+    <script src="~/develover/js/vehicle.js"></script>
+    <script src="~/develover/js/vehicle.fueling.js"></script>
+
+    <script>
+        let options = {
+            mode: VoucherMode.VIEW,
+            form: "form-vehicle-fueling",
+            tableId: "table-vehicle-fueling-details",
+            modalId: "modal-add-detail",
+        }
+
+        let fueling = new Fueling(options, @Json.Serialize(Model));
+        fueling.initialize();
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fal fa-suitcase"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/vehicle">Vehicle</a></li>
+        <li class="breadcrumb-item"><a href="/vehicle/fueling">Fuelings</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detail</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        @Html.NewButton(Url.Action("new", "fueling", new { area = "vehicle" }))
+    </li>
+    <li class="nav-item">
+        @Html.EditButton(Url.Action("edit", "fueling", new { area = "vehicle", @id = Model.Id }))
+    </li>
+    <li class="nav-item">
+        @Html.DeleteButton("fueling.delete();")
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#vehicle-fueling-information">Fueling's Information</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="vehicle-fueling-information" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fal fa-suitcase mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        @Html.NewButton(Url.Action("new", "fueling", new { area = "vehicle" }))
+                    </li>
+                    <li class="nav-item">
+                        @Html.EditButton(Url.Action("edit", "fueling", new { area = "vehicle", @id = Model.Id }))
+                    </li>
+                    <li class="nav-item">
+                        @Html.DeleteButton("fueling.delete();")
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                @await Html.PartialAsync($"~/Areas/Vehicle/Views/VehicleFueling/_Form.cshtml", Model)
+            </div>
+            <div class="card-footer text-right py-2">
+                @await Html.PartialAsync($"~/Views/_AuditInfo.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>

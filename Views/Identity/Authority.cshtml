@@ -1,0 +1,133 @@
+﻿@using Develover.WebUI.Identity
+@using Develover.WebUI.Entities;
+
+@model AuthorityModel
+
+@{
+    ViewData["Title"] = "Authority";
+    List<Role> roles = (List<Role>)TempData["Roles"];
+    List<User> users = (List<User>)TempData["Users"];
+    List<UserRole> userRoles = (List<UserRole>)TempData["UserRoles"];
+}
+
+@section Styles
+{
+}
+
+@section Scripts
+{
+    <script src="~/develover/js/authority.js"></script>
+
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fad fa-tasks"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Authority</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        <a class="btn btn-outline-secondary btn-sm" title="Cancel" href="javascript:void(0);" onclick="history.back();">
+            <i class="fal fa-ban"></i>
+            <span>Cancel</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-outline-primary btn-sm" title="Save" href="javascript:void(0);" onclick="saveauthority($('form#authority-form'),'@Model.Type','@Model.Id');">
+            <i class="fal fa-save"></i>
+            <span>Save</span>
+        </a>
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link @(Model.Type == "role" ? "active" : null)" data-toggle="tab" href="#role-list">Role</a></li>
+    <li class="nav-item"><a class="nav-link @(Model.Type == "user" ? "active" : null)" data-toggle="tab" href="#users-list">User</a></li>
+}
+<div class="tab-content">
+    <div class="tab-pane fade @(Model.Type == "role" ? "show active" : null)" id="role-list" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="authority card-title">ROLES</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+            </div>
+            <div class="card-body  form-horizontal pt-0">
+                @foreach (var role in roles)
+                {
+                    <a class="btn btn-success" href="@Url.Action("authority", "identity", new { type = "role", id = role.Id })">@role.Name (@(userRoles.Count(i=>i.RoleId== role.Id)))</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade @(Model.Type == "user" ? "show active" : null)" id="users-list" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="authority card-title">USERS</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+            </div>
+            <div class="card-body  form-horizontal pt-0">
+                @foreach (var user in users)
+                {
+                    <a class="btn btn-info" href="@Url.Action("authority", "identity", new { type = "user", id = user.Id })">@user.Name</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header py-2 d-flex flex-row-reverse">
+            <h3 class="authority card-title">
+                <span class="text-uppercase">List of permissions assigned to @Model.Type <span title="@Model.Description">"@Model.Name"</span></span>
+            </h3>
+            <div class="catalog card-options">
+                <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+            </div>
+            <ul class="functions nav nav-tabs page-header-tab d-none">
+                <li class="nav-item">
+                    <a class="btn btn-outline-secondary btn-sm" title="Cancel" href="javascript:void(0);" onclick="history.back();">
+                        <i class="fal fa-ban"></i>
+                        <span>Cancel</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary btn-sm" title="Save" href="javascript:void(0);" onclick="saveauthority($('form#authority-form'),'@Model.Type','@Model.Id');">
+                        <i class="fal fa-save"></i>
+                        <span>Save</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body form-horizontal pt-0">
+            <form id="authority-form">
+                @foreach (var group in Model.Permissions.OrderBy(i => i.GroupNo).Select(p => p.GroupNo).Distinct())
+                {
+                    @if (group != "")
+                    {
+                        <div class="border-bottom text-uppercase"><h6 class="font-weight-bold mb-0">@Model.Permissions.Where(p => p.GroupNo == group).Select(p => p.GroupName).FirstOrDefault().ToUpper()</h6></div>
+                    }
+                    <div class="form-group row pt-2">
+                        @foreach (var permission in Model.Permissions.Where(p => p.GroupNo == group))
+                        {
+                            <div class="field-group col-sm-2">
+                                @Html.CheckBox($"p-{permission.Id.ToString()}", permission.Checked, new { @class = "permission" })
+                                @Html.Label($"p-{permission.Id.ToString()}", permission.Description, htmlAttributes: new { @title = permission.Description })
+                            </div>
+                        }
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

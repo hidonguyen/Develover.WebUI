@@ -1,0 +1,32 @@
+﻿<form id="form-goods-receipt-note" class="form was-validated">
+    @Html.DeveloverHidden("Id")
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "Date", label: "Ngày phiếu", placeholder: "Ngày phiếu", inputClass: "datepicker")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "No", label: "Số phiếu", placeholder: "Số phiếu")
+        </div>
+        <div class="col-md-6 mb-3">
+            @Html.DeveloverSelect2(id: "SupplierId", label: "Nhà cung cấp", validation: "required", validationMessage: "Vui lòng chọn nhà cung cấp!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-3">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+
+    <div class="detail-info">
+        <table id="dt-receipt-note-items" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline text-nowrap">
+        </table>
+    </div>
+</form>
+
+@await Html.PartialAsync($"~/Areas/Stationery/Views/GoodsReceiptNote/_AddItem.cshtml")
+
+@*@await Html.PartialAsync($"~/Views/Catalog/StockItem/_Modal.cshtml", new StockItem { Id = Guid.NewGuid(), Status = true })
+    @await Html.PartialAsync($"~/Views/Catalog/Supplier/_Modal.cshtml", new Supplier { Id = Guid.NewGuid(), Status = true })
+
+    @await Html.PartialAsync($"~/Views/Catalog/UnitOfMeasure/_Modal.cshtml", new UnitOfMeasure { Id = Guid.NewGuid(), Status = true })
+    @await Html.PartialAsync($"~/Views/Catalog/Location/_Modal.cshtml", new Location { Id = Guid.NewGuid(), Status = true })*@

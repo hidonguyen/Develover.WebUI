@@ -1,0 +1,299 @@
+﻿@using Develover.WebUI.Entities;
+
+@model User
+
+@{
+    ViewData["Title"] = "Profile";
+    List<SelectListItem> roles = (List<SelectListItem>)ViewData["Roles"];
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/plugins/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="~/plugins/fullcalendar/fullcalendar.min.css">
+}
+
+@section Scripts
+{
+    <script src="~/bundles/summernote.bundle.js"></script>
+    <script src="~/js/page/summernote.js"></script>
+    <script src="~/develover/js/catalog.user.js"></script>
+    <script src="~/bundles/fullcalendar.bundle.js"></script>
+    <script src="~/js/page/calendar.js"></script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fad fa-edit"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+    </ol>
+}
+
+@section Functions
+{
+}
+
+@section Tabs
+{
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-calendar-tab" data-toggle="pill" href="#pills-calendar" role="tab" aria-controls="pills-calendar" aria-selected="false">Calendar</a>
+    </li>
+}
+<div class="row clearfix">
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="widgets1">
+                    <div class="icon">
+                        <i class="icon-trophy text-success font-30"></i>
+                    </div>
+                    <div class="details">
+                        <h6 class="mb-0 font600">Total Earned</h6>
+                        <span class="mb-0">$96K +</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="widgets1">
+                    <div class="icon">
+                        <i class="icon-heart text-warning font-30"></i>
+                    </div>
+                    <div class="details">
+                        <h6 class="mb-0 font600">Total Likes</h6>
+                        <span class="mb-0">6,270</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="widgets1">
+                    <div class="icon">
+                        <i class="icon-handbag text-danger font-30"></i>
+                    </div>
+                    <div class="details">
+                        <h6 class="mb-0 font600">Delivered</h6>
+                        <span class="mb-0">720 Delivered</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="widgets1">
+                    <div class="icon">
+                        <i class="icon-user text-primary font-30"></i>
+                    </div>
+                    <div class="details">
+                        <h6 class="mb-0 font600">Jobs</h6>
+                        <span class="mb-0">614</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade" id="pills-calendar" role="tabpanel" aria-labelledby="pills-calendar-tab">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Profile</h3>
+                        <div class="card-options">
+                            <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                            <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                        </div>
+                    </div>
+                    <form method="post" asp-controller="identity" asp-action="profile" class="form">
+                        <div class="card-body form-horizontal">
+
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.Id)
+                            <div class="form-group row">
+                                @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-4">
+                                    @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    @Html.ValidationMessageFor(m => m.Name, "", htmlAttributes: new { @class = "is-invalid" })
+                                </div>
+                                @Html.LabelFor(m => m.Initial, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-4">
+                                    @Html.TextBoxFor(m => m.Initial, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    @Html.ValidationMessageFor(m => m.Initial, "", htmlAttributes: new { @class = "is-invalid" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-4">
+                                    @Html.TextBoxFor(m => m.Username, htmlAttributes: Model.Id != Guid.Empty ? (object)new { @class = "form-control form-control-sm", @readonly = "readonly" } : new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                @Html.LabelFor(m => m.DateOfBirth, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-4">
+                                    @Html.TextBoxFor(m => m.DateOfBirth, "{0:dd/MM/yyyy}", htmlAttributes: new { @class = "datepicker form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-4">
+                                    @Html.TextBoxFor(m => m.Phone, htmlAttributes: new { @type = "phone", @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-4">
+                                    @Html.TextBoxFor(m => m.Email, htmlAttributes: new { @type = "email", @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-10">
+                                    @Html.TextAreaFor(m => m.Address, htmlAttributes: new { @class = "form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(m => m.Note, htmlAttributes: new { @class = "col-sm-2 col-form-label col-form-label-sm text-sm-right" })
+                                <div class="field-group col-sm-10">
+                                    @Html.TextAreaFor(m => m.Note, htmlAttributes: new { @class = "summernote inline-editor form-control form-control-sm" })
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-primary"><i class="fad fa-edit"></i> Update Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Event popup -->
+<div class="modal fade" id="addNewEvent" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><strong>Add</strong> an event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Event Name</label>
+                            <input class="form-control" placeholder="Enter name" type="text" name="category-name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Choose Event Color</label>
+                            <select class="form-control" data-placeholder="Choose a color..." name="category-color">
+                                <option value="success">Success</option>
+                                <option value="danger">Danger</option>
+                                <option value="info">Info</option>
+                                <option value="primary">Primary</option>
+                                <option value="warning">Warning</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success save-event" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Direct Event popup -->
+<div class="modal fade" id="addDirectEvent" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Direct Event</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Event Name</label>
+                            <input class="form-control" name="event-name" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Event Type</label>
+                            <select name="event-bg" class="form-control">
+                                <option value="success">Success</option>
+                                <option value="danger">Danger</option>
+                                <option value="info">Info</option>
+                                <option value="primary">Primary</option>
+                                <option value="warning">Warning</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn save-btn btn-success">Save</button>
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Event Edit Modal popup -->
+<div class="modal fade" id="eventEditModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Event</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Event Name</label>
+                            <input class="form-control" name="event-name" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Event Type</label>
+                            <select name="event-bg" class="form-control">
+                                <option value="success">Success</option>
+                                <option value="danger">Danger</option>
+                                <option value="info">Info</option>
+                                <option value="primary">Primary</option>
+                                <option value="warning">Warning</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn mr-auto delete-btn btn-danger">Delete</button>
+                <button class="btn save-btn btn-success">Save</button>
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

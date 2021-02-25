@@ -1,0 +1,79 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model ContractType
+
+@{
+    ViewData["Title"] = "Edit Contract Type";
+}
+
+@section Styles
+{
+    <link href="~/plugins/summernote/dist/summernote.css" rel="stylesheet" />
+}
+
+@section Scripts
+{
+    <script src="~/bundles/summernote.bundle.js"></script>
+    <script src="~/js/page/summernote.js"></script>
+    <script src="~/develover/js/catalog.contracttype.js"></script>
+
+    <script>
+        let options = {
+            mode: CatalogMode.EDIT,
+            form: "form-contract-type"
+        }
+        let contractType = new ContractType(options, @Json.Serialize(Model));
+        contractType.initialize();
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fad fa-file-signature"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/catalog/contracttypes">Contract Types</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        @Html.CancelButton()
+    </li>
+    <li class="nav-item">
+        @Html.SaveButton("contractType.save();")
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#contract-type-information">Contract Type's Information</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="contract-type-information" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fad fa-file-signature mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        @Html.CancelButton()
+                    </li>
+                    <li class="nav-item">
+                        @Html.SaveButton("contractType.save();")
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                @await Html.PartialAsync($"~/Views/Catalog/ContractType/_Form.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>

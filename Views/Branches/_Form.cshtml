@@ -1,0 +1,61 @@
+﻿<form id="form-branch" class="form was-validated">
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên chi nhánh", placeholder: "Tên chi nhánh", validation: "required", validationMessage: "Tên chi nhánh không được để trống!")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "Initial", label: "Tên viết tắt", placeholder: "Tên viết tắt")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "TaxNo", label: "Mã số thuế", placeholder: "Mã số thuế", validation: "required", validationMessage: "Mã số thuế không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            @Html.DeveloverTextBox(id: "CompanyName", label: "Tên hiển thị", placeholder: "Tên hiển thị", validation: "required", validationMessage: "Tên hiển thị không được để trống!")
+        </div>
+        <div class="col-md-6 mb-3">
+            @Html.DeveloverTextBox(id: "CompanyNameE", label: "Tên hiển thị tiếng Anh", placeholder: "Tên hiển thị tiếng Anh")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-3">
+            @Html.DeveloverTextArea(id: "Address", label: "Địa chỉ", placeholder: "Địa chỉ")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "Phone", label: "Điện thoại", placeholder: "Điện thoại")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "Fax", label: "Điện thư", placeholder: "Điện thư")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverEmail(id: "Email", label: "Thư điện tử", placeholder: "Thư điện tử")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "Website", label: "Trang mạng", placeholder: "Trang mạng")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            @Html.DeveloverTextBox(id: "Director", label: "Giám đốc", placeholder: "Giám đốc", validation: "required", validationMessage: "Giám đốc không được để trống!")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "ChiefAccountant", label: "Kế toán trưởng", placeholder: "Kế toán trưởng")
+        </div>
+        <div class="col-md-3 mb-3">
+            @Html.DeveloverTextBox(id: "Treasurer", label: "Thủ quỹ", placeholder: "Thủ quỹ")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-3">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

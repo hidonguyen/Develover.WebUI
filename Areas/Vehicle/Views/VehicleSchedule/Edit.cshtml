@@ -1,0 +1,90 @@
+﻿@using Develover.WebUI.Entities;
+@using Develover.WebUI.Extensions;
+
+@model VehicleSchedule
+
+@{
+    ViewData["Title"] = "Edit Schedule";
+}
+
+@section Styles
+{
+    <link href="~/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+}
+
+@section Scripts
+{
+    <script src="~/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="~/plugins/bootstrap-table/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+    <script src="~/develover/js/vehicle.js"></script>
+    <script src="~/develover/js/vehicle.schedule.js"></script>
+
+    <script>
+        let options = {
+            mode: VoucherMode.EDIT,
+            form: "form-vehicle-schedule",
+            tableId: "table-vehicle-schedule-details",
+            modalId: "modal-add-detail",
+        }
+
+        let schedule = new Schedule(options, @Json.Serialize(Model));
+        schedule.initialize();
+    </script>
+}
+
+@section Breadcrumb
+{
+    <h1 class="page-title"><i class="fal fa-suitcase"></i> @ViewData["Title"]</h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/vehicle">Vehicle</a></li>
+        <li class="breadcrumb-item"><a href="/vehicle/schedule">Schedules</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+}
+
+@section Functions
+{
+    <li class="nav-item">
+        <a class="btn btn-outline-secondary btn-sm" title="Cancel (Z+C)" href="javascript:void(0);" data-hotkey="Z+C" onclick="schedule.cancel();">
+            <i class="fal fa-ban"></i>
+            <span>Cancel</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        @Html.SaveButton("schedule.save();")
+    </li>
+}
+
+@section Tabs
+{
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#vehicle-schedule-information">Schedule's Information</a></li>
+}
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="vehicle-schedule-information" role="tabpanel">
+        <div class="card">
+            <div class="card-header py-2 d-flex flex-row-reverse">
+                <h3 class="catalog card-title d-none mr-auto"><i class="fal fa-suitcase mr-2"></i> @ViewData["Title"]</h3>
+                <div class="catalog card-options">
+                    <a href="javascript:void(0)" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="javascript:void(0)" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                </div>
+                <ul class="functions nav nav-tabs page-header-tab d-none">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-secondary btn-sm" title="Cancel (Z+C)" href="javascript:void(0);" data-hotkey="Z+C" onclick="schedule.cancel();">
+                            <i class="fal fa-ban"></i>
+                            <span>Cancel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        @Html.SaveButton("schedule.save();")
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body form-horizontal pt-0">
+                @await Html.PartialAsync($"~/Areas/Vehicle/Views/VehicleSchedule/_Form.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>

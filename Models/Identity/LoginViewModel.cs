@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Develover.WebUI.Models
+{
+    public class LoginViewModel
+    {
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Enter username to login")]
+        public string Username { get; set; }
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Enter password to login")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string Password { get; set; }
+        [Display(Name = "Remember me")]
+        public bool RememberMe { get; set; }
+
+        public string ReturnUrl { get; set; }
+    }
+}

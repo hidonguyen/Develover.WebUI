@@ -1,0 +1,35 @@
+﻿@using Develover.WebUI.Entities;
+
+@model PublishedPlace
+
+<div class="modal fade" id="modal-published-place" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="publishedPlace" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">NEW PUBLISHED PLACE</h6>
+                <button type="button" class="close" onclick="publishedPlaceModal.hideModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync($"~/Views/Catalog/PublishedPlace/_Form.cshtml", Model)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="publishedPlaceModal.hideModal();">Close</button>
+                <button type="button" class="btn btn-primary save" onclick="publishedPlaceModal.save();">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/develover/js/catalog.publishedplace.js"></script>
+<script>
+    let publishedPlaceModalOptions = {
+        mode: CatalogMode.NEW,
+        form: "form-published-place",
+        modalId: "modal-published-place"
+    };
+
+    let publishedPlaceModal = new PublishedPlace(publishedPlaceModalOptions, @Json.Serialize(Model));
+    publishedPlaceModal.initialize();
+</script>
