@@ -1,12 +1,12 @@
-﻿var branch = (function (self) {
-    let baseUrl = '/branches';
+﻿var contractType = (function (self) {
+    let baseUrl = '/contracttype';
     let mode = CatalogMode.VIEW;
     let modelId = urlParams.get('id');
-    let context = $("#panel-branch");
+    let context = $("#panel-contract-type");
 
     let isModal = false;
-    if ($("#modal-branch").length) {
-        context = $("#modal-branch");
+    if ($("#modal-contract-type").length) {
+        context = $("#modal-contract-type");
         isModal = true;
     }
 
@@ -23,30 +23,18 @@
     let postbackClass = "";
 
     let initializeIndex = () => {
-        $('#dt-branches').dataTable({
+        $('#dt-contract-types').dataTable({
             responsive: true,
             ajax: baseUrl + '/getlist',
             columns: [
                 { data: "name", title: "Tên" },
-                { data: "initial", title: "Tên viết tắt" },
-                { data: "taxNo", title: "Mã số thuế" },
-                { data: "companyName", title: "Tên chi nhánh" },
-                { data: "address", title: "Địa chỉ" },
-                { data: "phone", title: "Điện thoại" },
-                { data: "email", title: "Thư điện tử" },
-                { data: "director", title: "Giám đốc" },
                 { data: "note", title: "Ghi chú" },
-                { data: "createdDate", title: "Date" },
                 { data: "status", title: "Tình trạng" }
             ],
             columnDefs: [
                 {
                     targets: 0,
-                    render: branchDrillDownFormatter
-                },
-                {
-                    targets: 9,
-                    render: dateFormatter
+                    render: contractTypeDrillDownFormatter
                 },
                 {
                     targets: -1,
@@ -122,24 +110,12 @@
         clearInputData(context);
         //binding to control
         $("#Name", context).val(model.name);
-        $("#Initial", context).val(model.initial);
-        $("#CompanyName", context).val(model.companyName);
+        $("#Note", context).val(model.note);
+        $("#Status", context).prop('checked', model.status);
     }
 
     let createModel = () => {
         model.name = $("input#Name", context).val();
-        model.initial = $("input#Initial", context).val();
-        model.taxNo = $("input#TaxNo", context).val();
-        model.companyName = $("input#CompanyName", context).val();
-        model.companyNameE = $("input#CompanyNameE", context).val();
-        model.address = $("textarea#Address", context).val();
-        model.phone = $("input#Phone", context).val();
-        model.fax = $("input#Fax", context).val();
-        model.email = $("input#Email", context).val();
-        model.webSite = $("input#Website", context).val();
-        model.director = $("input#Director", context).val();
-        model.chiefAccountant = $("input#ChiefAccountant", context).val();
-        model.treasurer = $("input#Treasurer", context).val();
         model.note = $("textarea#Note", context).val();
         model.status = $("input#Status", context).prop("checked");
     }
@@ -316,5 +292,5 @@
 })({});
 
 document.addEventListener('DOMContentLoaded', function () {
-    branch.initialize();
+    contractType.initialize();
 }); 

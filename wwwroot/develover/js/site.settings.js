@@ -13,26 +13,26 @@ let swalOptions = {
     closeOnEsc: true
 };
 
-$.ajax({
-    url: "/setting/getdeveloversetting",
-    type: "get",
-    async: false,
-}).done((res) => {
-    if (res.develoverSetting) {
-        decimalSymbol = res.develoverSetting.decimalSymbol === "-1" ? "." : res.develoverSetting.decimalSymbol;
-        decimalCharacterAlternative = res.develoverSetting.decimalSymbol === "-1" ? " " : res.develoverSetting.decimalSymbol;
-        thousandsSymbol = res.develoverSetting.thousandsSymbol === "-1" ? " " : res.develoverSetting.thousandsSymbol;
-        roundPacking = res.develoverSetting.roundPacking;
-        roundQuantity = res.develoverSetting.roundQuantity;
-        roundAmount = res.develoverSetting.roundAmount;
-        roundAmountVND = res.develoverSetting.roundAmountVND;
-        formatDate = res.develoverSetting.formatDate;
-        formatDateDatepicker = res.develoverSetting.formatDateDatepicker;
-    }
+//$.ajax({
+//    url: "/setting/getdeveloversetting",
+//    type: "get",
+//    async: false,
+//}).done((res) => {
+//    if (res.develoverSetting) {
+//        decimalSymbol = res.develoverSetting.decimalSymbol === "-1" ? "." : res.develoverSetting.decimalSymbol;
+//        decimalCharacterAlternative = res.develoverSetting.decimalSymbol === "-1" ? " " : res.develoverSetting.decimalSymbol;
+//        thousandsSymbol = res.develoverSetting.thousandsSymbol === "-1" ? " " : res.develoverSetting.thousandsSymbol;
+//        roundPacking = res.develoverSetting.roundPacking;
+//        roundQuantity = res.develoverSetting.roundQuantity;
+//        roundAmount = res.develoverSetting.roundAmount;
+//        roundAmountVND = res.develoverSetting.roundAmountVND;
+//        formatDate = res.develoverSetting.formatDate;
+//        formatDateDatepicker = res.develoverSetting.formatDateDatepicker;
+//    }
 
-}).fail((err) => {
-    console.log(err);
-});
+//}).fail((err) => {
+//    console.log(err);
+//});
 
 
 const develoverSettings = {

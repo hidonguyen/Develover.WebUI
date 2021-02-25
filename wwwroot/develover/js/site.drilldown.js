@@ -8,6 +8,21 @@ function branchDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function contractTypeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/contracttype/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+
+
+
+
+
+
 function userDrillDownFormatter(data, type, row, meta) {
     if (row.userId && data != undefined) {
         return '<a href="/identity/detailuser?id=' + row.userId.toLowerCase() + '">' + data + '</a>';
@@ -198,18 +213,6 @@ function positionDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/catalog/detailposition?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function contractTypeDrillDownFormatter(data, type, row, meta) {
-    if (row.contractTypeId && data != undefined) {
-        return '<a href="/catalog/detailcontractType?id=' + row.contractTypeId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailcontractType?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;
