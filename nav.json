@@ -34,6 +34,10 @@
           "href": "/documenttype"
         },
         {
+          "title": "Ngày lễ",
+          "href": "/Holiday"
+        },
+        {
           "title": "Loại nghỉ phép",
           "href": "/leavetype"
         },
@@ -50,8 +54,28 @@
           "href": "/publishedplace"
         },
         {
+          "title": "Hàng tồn kho",
+          "href": "/stockitem"
+        },
+        {
+          "title": "Nhà cung cấp",
+          "href": "/supplier"
+        },
+        {
           "title": "Đơn vị đo",
           "href": "/unitofmeasure"
+        },
+        {
+          "title": "Phương tiện",
+          "href": "/vehicle"
+        },
+        {
+          "title": "Chi phí phương tiện",
+          "href": "/vehiclecost"
+        },
+        {
+          "title": "Mục đích sử dụng phương tiện",
+          "href": "/vehicleusepurpose"
         },
         {
           "title": "Khai báo tiếp ở đây",

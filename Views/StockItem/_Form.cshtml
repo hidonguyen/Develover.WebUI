@@ -1,0 +1,27 @@
+﻿<form id="form-stock-item" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên hàng tồn kho", placeholder: "Tên hàng tồn kho", validation: "required", validationMessage: "Tên hàng tồn kho không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4">
+            @Html.DeveloverSelect2(id: "UnitOfMeasureId", label: "Mã đơn vị đo")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4">
+            @Html.DeveloverSelect2(id: "DefaultLocationId", label: "Mã địa điểm mặc định")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

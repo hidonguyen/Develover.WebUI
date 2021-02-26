@@ -95,10 +95,10 @@ namespace Develover.ERP.Web
                     areaName: "stationery",
                     pattern: "stationery/{controller=home}/{action=index}");
 
-                endpoints.MapAreaControllerRoute(
-                    name: "vehicle",
-                    areaName: "vehicle",
-                    pattern: "vehicle/{controller=home}/{action=index}");
+                //endpoints.MapAreaControllerRoute(
+                //    name: "vehicle",
+                //    areaName: "vehicle",
+                //    pattern: "vehicle/{controller=home}/{action=index}");
 
 
                 endpoints.MapControllerRoute(

@@ -1,12 +1,12 @@
-﻿var stockItem = (function (self) {
-    let baseUrl = '/stockitem';
+﻿var vehicleCost = (function (self) {
+    let baseUrl = '/vehiclecost';
     let mode = CatalogMode.VIEW;
     let modelId = urlParams.get('id');
-    let context = $("#panel-stock-item");
+    let context = $("#panel-vehicle-cost");
 
     let isModal = false;
-    if ($("#modal-stock-item").length) {
-        context = $("#modal-stock-item");
+    if ($("#modal-vehicle-cost").length) {
+        context = $("#modal-vehicle-cost");
         isModal = true;
     }
 
@@ -23,22 +23,18 @@
     let postbackClass = "";
 
     let initializeIndex = () => {
-        $('#dt-stock-items').dataTable({
+        $('#dt-vehicle-costs').dataTable({
             responsive: true,
             ajax: baseUrl + '/getlist',
             columns: [
                 { data: "name", title: "Tên" },
-                { data: "unitOfMeasureId", title: "Mã đơn vị đo" },
-                { data: "unitOfMeasure", title: "Đơn vị đo" },
-                { data: "defaultLocationId", title: "Mã địa điểm mặc định" },
-                { data: "defaultLocation", title: "Địa điểm mặc định" },
                 { data: "note", title: "Ghi chú" },
                 { data: "status", title: "Tình trạng" }
             ],
             columnDefs: [
                 {
                     targets: 0,
-                    render: stockItemDrillDownFormatter
+                    render: vehicleCostDrillDownFormatter
                 },
                 {
                     targets: -1,
@@ -114,18 +110,12 @@
         clearInputData(context);
         //binding to control
         $("#Name", context).val(model.name);
-        $("#UnitOfMeasureId", context).val(model.unitOfMeasureId);
-        $("#UnitOfMeasure", context).val(model.unitOfMeasure);
-        $("#DefaultLocationId", context).val(model.defaultLocationId);
-        $("#DefaultLocation", context).val(model.defaultLocation);
         $("#Note", context).val(model.note);
         $("#Status", context).prop('checked', model.status);
     }
 
     let createModel = () => {
         model.name = $("input#Name", context).val();
-        model.unitOfMeasureId = $("select#UnitOfMeasureId", context).val();
-        model.defaultLocationId = $("select#DefaultLocationId", context).val();
         model.note = $("textarea#Note", context).val();
         model.status = $("input#Status", context).prop("checked");
     }
@@ -302,5 +292,5 @@
 })({});
 
 document.addEventListener('DOMContentLoaded', function () {
-    stockItem.initialize();
+    vehicleCost.initialize();
 }); 
