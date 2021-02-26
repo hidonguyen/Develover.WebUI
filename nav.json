@@ -58,6 +58,10 @@
           "href": "/stockitem"
         },
         {
+          "title": "Nhà cung cấp",
+          "href": "/supplier"
+        },
+        {
           "title": "Đơn vị đo",
           "href": "/unitofmeasure"
         },

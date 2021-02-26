@@ -143,6 +143,14 @@ function stockItemDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function supplierDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/supplier/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -273,18 +281,6 @@ function internalDocumentDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-function supplierDrillDownFormatter(data, type, row, meta) {
-    if (row.supplierId && data != undefined) {
-        return '<a href="/catalog/detailsupplier?id=' + row.supplierId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailsupplier?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
 function goodsReceiptNoteDrillDownFormatter(data, type, row, meta) {
     if (row.goodsReceiptNoteId && data != undefined) {
         return '<a href="/stationery/receipt-note/detail?id=' + row.goodsReceiptNoteId.toLowerCase() + '">' + data + '</a>';
