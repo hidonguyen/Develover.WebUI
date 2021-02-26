@@ -107,6 +107,20 @@ function unitOfMeasureDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function vehicleCostDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/vehiclecost/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+
+
+
+
+
 
 
 function userDrillDownFormatter(data, type, row, meta) {
@@ -371,18 +385,7 @@ function vehicleUsePurposeDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function vehicleCostDrillDownFormatter(data, type, row, meta) {
-    if (row.vehicleCostId && data != undefined) {
-        return '<a href="/catalog/detailVehicleCost?id=' + row.vehicleCostId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailVehicleCost?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function vehicleDrillDownFormatter(data, type, row, meta) {
     if (row.vehicleId && data != undefined) {
         return '<a href="/catalog/detailVehicle?id=' + row.vehicleId.toLowerCase() + '">' + data + '</a>';
