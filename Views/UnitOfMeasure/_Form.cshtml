@@ -1,0 +1,17 @@
+﻿<form id="form-unit-of-measure" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên đơn vị đo", placeholder: "Tên đơn vị đo", validation: "required", validationMessage: "Tên đơn vị đo không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

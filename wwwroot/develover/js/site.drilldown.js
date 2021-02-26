@@ -98,6 +98,14 @@ function publishedPlaceDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function unitOfMeasureDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/unitofmeasure/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -253,18 +261,6 @@ function stockItemDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-function unitOfMeasureDrillDownFormatter(data, type, row, meta) {
-    if (row.unitOfMeasureId && data != undefined) {
-        return '<a href="/catalog/detailunitOfMeasure?id=' + row.unitOfMeasureId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailunitOfMeasure?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
 function supplierDrillDownFormatter(data, type, row, meta) {
     if (row.supplierId && data != undefined) {
         return '<a href="/catalog/detailsupplier?id=' + row.supplierId.toLowerCase() + '">' + data + '</a>';
