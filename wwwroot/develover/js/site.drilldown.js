@@ -35,8 +35,14 @@ function divisionDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-
-
+function documentCategoryDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/documentcategory/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 function userDrillDownFormatter(data, type, row, meta) {
     if (row.userId && data != undefined) {
@@ -100,18 +106,6 @@ function baseCatalogDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-function documentCategoryDrillDownFormatter(data, type, row, meta) {
-    if (row.documentCategoryId && data != undefined) {
-        return '<a href="/catalog/detaildocumentCategory?id=' + row.documentCategoryId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildocumentCategory?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
 function documentStatusDrillDownFormatter(data, type, row, meta) {
     if (row.documentStatusId && data != undefined) {
         return '<a href="/catalog/detaildocumentstatus?id=' + row.documentStatusId.toLowerCase() + '">' + data + '</a>';

@@ -22,6 +22,10 @@
           "href": "/division"
         },
         {
+          "title": "Mục tài liệu",
+          "href": "/documentcategory"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
