@@ -1,0 +1,17 @@
+﻿<form id="form-department" class="form was-validated">
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên bộ phận", placeholder: "Tên bộ phận", validation: "required", validationMessage: "Tên bộ phận không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12 mb-3">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

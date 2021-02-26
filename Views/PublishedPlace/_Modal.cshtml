@@ -1,0 +1,19 @@
+﻿<div class="modal fade" id="modal-published-place" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Thêm mới nơi xuất bản</h6>
+                <button type="button" class="close btn-close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body py-0">
+                @await Html.PartialAsync($"~/Views/PublishedPlace/_Form.cshtml")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-close">Đóng</button>
+                <button type="button" class="btn btn-primary btn-save">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>

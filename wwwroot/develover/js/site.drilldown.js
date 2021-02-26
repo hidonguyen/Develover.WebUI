@@ -17,9 +17,95 @@ function contractTypeDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function departmentDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/department/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
+function divisionDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/division/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
+function documentCategoryDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/documentcategory/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
+function documentStatusDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/documentstatus/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function documentTypeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/documenttype/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function leaveTypeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/leavetype/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function locationDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/location/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function positionDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/position/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function publishedPlaceDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/publishedplace/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function unitOfMeasureDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/unitofmeasure/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -84,54 +170,7 @@ function baseCatalogDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function departmentDrillDownFormatter(data, type, row, meta) {
-    if (row.departmentId && data != undefined) {
-        return '<a href="/catalog/detaildepartment?id=' + row.departmentId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildepartment?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function documentCategoryDrillDownFormatter(data, type, row, meta) {
-    if (row.documentCategoryId && data != undefined) {
-        return '<a href="/catalog/detaildocumentCategory?id=' + row.documentCategoryId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildocumentCategory?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function documentStatusDrillDownFormatter(data, type, row, meta) {
-    if (row.documentStatusId && data != undefined) {
-        return '<a href="/catalog/detaildocumentstatus?id=' + row.documentStatusId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildocumentstatus?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function documentTypeDrillDownFormatter(data, type, row, meta) {
-    if (row.documentTypeId && data != undefined) {
-        return '<a href="/catalog/detaildoccumenttype?id=' + row.documentTypeId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildocumenttype?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function employeeDrillDownFormatter(data, type, row, meta) {
     if (row.employeeId && data != undefined) {
         return '<a href="/catalog/detailemployee?id=' + row.employeeId.toLowerCase() + '">' + data + '</a>';
@@ -144,18 +183,7 @@ function employeeDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function publishedPlaceDrillDownFormatter(data, type, row, meta) {
-    if (row.publishedPlaceId && data != undefined) {
-        return '<a href="/catalog/detailpublishedPlace?id=' + row.publishedPlaceId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailpublishedPlace?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function baseVoucherDrillDownFormatter(data, type, row, meta) {
     if (row.baseVoucherId && data != undefined) {
         return '<a href="/basevoucher/detail?id=' + row.baseVoucherId.toLowerCase() + '">' + data + '</a>';
@@ -170,49 +198,12 @@ function baseVoucherDrillDownFormatter(data, type, row, meta) {
 }
 
 
-function divisionDrillDownFormatter(data, type, row, meta) {
-    if (row.divisionId && data != undefined) {
-        return '<a href="/catalog/detaildivision?id=' + row.divisionId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildivision?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
 function holidayDrillDownFormatter(data, type, row, meta) {
     if (row.holidayId && data != undefined) {
         return '<a href="/catalog/detailholiday?id=' + row.holidayId.toLowerCase() + '">' + data + '</a>';
     } else {
         if (row.id && data != undefined) {
             return '<a href="/catalog/detailholiday?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function leaveTypeDrillDownFormatter(data, type, row, meta) {
-    if (row.leaveTypeId && data != undefined) {
-        return '<a href="/catalog/detailleaveType?id=' + row.leaveTypeId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailleaveType?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function positionDrillDownFormatter(data, type, row, meta) {
-    if (row.positionId && data != undefined) {
-        return '<a href="/catalog/detailposition?id=' + row.positionId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailposition?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;
@@ -269,30 +260,7 @@ function stockItemDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function locationDrillDownFormatter(data, type, row, meta) {
-    if (row.locationId && data != undefined) {
-        return '<a href="/catalog/detaillocation?id=' + row.locationId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaillocation?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function unitOfMeasureDrillDownFormatter(data, type, row, meta) {
-    if (row.unitOfMeasureId && data != undefined) {
-        return '<a href="/catalog/detailunitOfMeasure?id=' + row.unitOfMeasureId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailunitOfMeasure?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function supplierDrillDownFormatter(data, type, row, meta) {
     if (row.supplierId && data != undefined) {
         return '<a href="/catalog/detailsupplier?id=' + row.supplierId.toLowerCase() + '">' + data + '</a>';

@@ -14,6 +14,46 @@
           "href": "/contracttype"
         },
         {
+          "title": "Bộ phận",
+          "href": "/department"
+        },
+        {
+          "title": "Khu vực",
+          "href": "/division"
+        },
+        {
+          "title": "Mục tài liệu",
+          "href": "/documentcategory"
+        },
+        {
+          "title": "Trạng thái tài liệu",
+          "href": "/documentstatus"
+        },
+        {
+          "title": "Loại tài liệu",
+          "href": "/documenttype"
+        },
+        {
+          "title": "Loại nghỉ phép",
+          "href": "/leavetype"
+        },
+        {
+          "title": "Địa điểm",
+          "href": "/location"
+        },
+        {
+          "title": "Vị trí",
+          "href": "/position"
+        },
+        {
+          "title": "Nơi xuất bản",
+          "href": "/publishedplace"
+        },
+        {
+          "title": "Đơn vị đo",
+          "href": "/unitofmeasure"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
