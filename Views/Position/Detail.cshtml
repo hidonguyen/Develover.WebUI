@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Thông tin loại địa điểm";
-    ViewData["PageName"] = "location";
-    ViewData["Category1"] = "<a href=\"/location\">Danh mục địa điểm</a>";
+    ViewData["Title"] = "Thông tin loại vị trí";
+    ViewData["PageName"] = "position";
+    ViewData["Category1"] = "<a href=\"/position\">Danh mục vị trí</a>";
 }
 
 @section HeadBlock {}
 
 <div class="col-xl-12 px-0">
-    <div id="panel-location" class="panel">
+    <div id="panel-position" class="panel">
         <div class="panel-hdr">
             <h2>
                 <i class="fal fa-code-branch mr-2"></i> @ViewData["Title"]
@@ -23,7 +23,7 @@
                 <div class="panel-tag">
                     @Html.DeveloverDetailButton()
                 </div>
-                @await Html.PartialAsync($"~/Views/Location/_Form.cshtml")
+                @await Html.PartialAsync($"~/Views/Position/_Form.cshtml")
             </div>
         </div>
     </div>
@@ -32,5 +32,5 @@
 @section ScriptsBlock
 {
     <script src="~/develover/js/catalog.js"></script>
-    <script src="~/develover/js/catalog.location.js"></script>
+    <script src="~/develover/js/catalog.position.js"></script>
 }

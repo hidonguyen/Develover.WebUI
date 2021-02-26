@@ -80,6 +80,14 @@ function locationDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function positionDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/position/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -191,19 +199,6 @@ function holidayDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/catalog/detailholiday?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
-function positionDrillDownFormatter(data, type, row, meta) {
-    if (row.positionId && data != undefined) {
-        return '<a href="/catalog/detailposition?id=' + row.positionId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailposition?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;

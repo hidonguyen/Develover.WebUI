@@ -1,4 +1,4 @@
-﻿var location = (function (self) {
+﻿var thisLocation = (function (self) {
     let baseUrl = '/location';
     let mode = CatalogMode.VIEW;
     let modelId = urlParams.get('id');
@@ -292,5 +292,5 @@
 })({});
 
 document.addEventListener('DOMContentLoaded', function () {
-    location.initialize();
+    thisLocation.initialize();
 }); 

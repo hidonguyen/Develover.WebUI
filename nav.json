@@ -42,6 +42,10 @@
           "href": "/location"
         },
         {
+          "title": "Vị trí",
+          "href": "/position"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
