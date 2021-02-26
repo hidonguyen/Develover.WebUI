@@ -58,6 +58,10 @@
           "href": "/vehiclecost"
         },
         {
+          "title": "Mục đích sử dụng phương tiện",
+          "href": "/vehicleusepurpose"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }

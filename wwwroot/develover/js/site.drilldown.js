@@ -116,6 +116,14 @@ function vehicleCostDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function vehicleUsePurposeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/Vehicleusepurpose/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -373,18 +381,6 @@ function vehicleScheduleDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-function vehicleUsePurposeDrillDownFormatter(data, type, row, meta) {
-    if (row.vehicleUsePurposeId && data != undefined) {
-        return '<a href="/catalog/detailVehicleUsePurpose?id=' + row.vehicleUsePurposeId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailVehicleUsePurpose?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
 
 function vehicleDrillDownFormatter(data, type, row, meta) {
     if (row.vehicleId && data != undefined) {
