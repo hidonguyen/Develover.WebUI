@@ -18,6 +18,10 @@
           "href": "/department"
         },
         {
+          "title": "Khu vực",
+          "href": "/division"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }

@@ -26,7 +26,14 @@ function departmentDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-
+function divisionDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/division/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -166,19 +173,6 @@ function baseVoucherDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-
-function divisionDrillDownFormatter(data, type, row, meta) {
-    if (row.divisionId && data != undefined) {
-        return '<a href="/catalog/detaildivision?id=' + row.divisionId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildivision?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
 
 function holidayDrillDownFormatter(data, type, row, meta) {
     if (row.holidayId && data != undefined) {
