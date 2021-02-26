@@ -118,7 +118,7 @@ function vehicleCostDrillDownFormatter(data, type, row, meta) {
 
 function vehicleUsePurposeDrillDownFormatter(data, type, row, meta) {
     if (row.id && data) {
-        return '<a href="/Vehicleusepurpose/detail?id=' + row.id + '">' + data + '</a>';
+        return '<a href="/vehicleusepurpose/detail?id=' + row.id + '">' + data + '</a>';
     }
     else {
         return data;
@@ -128,6 +128,15 @@ function vehicleUsePurposeDrillDownFormatter(data, type, row, meta) {
 function holidayDrillDownFormatter(data, type, row, meta) {
     if (row.id && data) {
         return '<a href="/holiday/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+function stockItemDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/stockitem/detail?id=' + row.id + '">' + data + '</a>';
     }
     else {
         return data;
@@ -257,19 +266,6 @@ function internalDocumentDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/documents/internal/detail?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
-function stockItemDrillDownFormatter(data, type, row, meta) {
-    if (row.stockItemId && data != undefined) {
-        return '<a href="/catalog/detailstockitem?id=' + row.stockItemId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailstockitem?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;

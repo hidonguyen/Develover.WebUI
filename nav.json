@@ -54,6 +54,10 @@
           "href": "/publishedplace"
         },
         {
+          "title": "Hàng tồn kho",
+          "href": "/stockitem"
+        },
+        {
           "title": "Đơn vị đo",
           "href": "/unitofmeasure"
         },

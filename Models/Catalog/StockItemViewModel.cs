@@ -9,7 +9,7 @@ namespace Develover.WebUI.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid UnitOfMeasureId { get; set; }
+        public Guid? UnitOfMeasureId { get; set; }
         public string UnitOfMeasure { get; set; }
         public Guid? DefaultLocationId { get; set; }
         public string DefaultLocation { get; set; }

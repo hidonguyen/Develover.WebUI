@@ -29,6 +29,7 @@
             columns: [
                 { data: "name", title: "Tên" },
                 { data: "departmentId", title: "Mã bộ phận" },
+                { data: "department", title: "Bộ phận" },
                 { data: "note", title: "Ghi chú" },
                 { data: "status", title: "Tình trạng" }
             ],
@@ -112,6 +113,7 @@
         //binding to control
         $("#Name", context).val(model.name);
         $("#DepartmentId", context).val(model.departmentId);
+        $("#Department", context).val(model.department);
         $("#Note", context).val(model.note);
         $("#Status", context).prop('checked', model.status);
     }
