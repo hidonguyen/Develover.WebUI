@@ -125,6 +125,14 @@ function vehicleUsePurposeDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function holidayDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/holiday/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -212,20 +220,6 @@ function baseVoucherDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/basevoucher/detail?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
-
-function holidayDrillDownFormatter(data, type, row, meta) {
-    if (row.holidayId && data != undefined) {
-        return '<a href="/catalog/detailholiday?id=' + row.holidayId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailholiday?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;
