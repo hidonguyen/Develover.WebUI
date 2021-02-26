@@ -152,6 +152,14 @@ function supplierDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function vehicleDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/vehicle/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -360,20 +368,6 @@ function vehicleScheduleDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/vehicle/schedule/detail?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
-
-function vehicleDrillDownFormatter(data, type, row, meta) {
-    if (row.vehicleId && data != undefined) {
-        return '<a href="/catalog/detailVehicle?id=' + row.vehicleId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailVehicle?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;

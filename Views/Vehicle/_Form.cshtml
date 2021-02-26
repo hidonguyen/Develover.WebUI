@@ -1,0 +1,60 @@
+﻿<form id="form-vehicle" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "RegistrationNo", label: "Sổ đăng ký", placeholder: "Sổ đăng ký", validation: "required", validationMessage: "Sổ đăng ký không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-2">
+            @Html.DeveloverTextBox(id: "RegistrationDate", label: "Ngày đăng ký", placeholder: "Ngày đăng ký")
+        </div>
+        <div class="col-sm-2">
+            @Html.DeveloverTextBox(id: "ManufactureDate", label: "Ngày sản xuất", placeholder: "Ngày sản xuất")
+        </div>
+        <div class="col-sm-2">
+            @Html.DeveloverTextBox(id: "PurchaseDate", label: "Ngày mua", placeholder: "Ngày mua")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4">
+            @Html.DeveloverTextBox(id: "EngineNo", label: "Động cơ", placeholder: "Động cơ")
+        </div>
+        <div class="col-sm-4">
+            @Html.DeveloverTextBox(id: "ChassisNo", label: "Khung gầm", placeholder: "Khung gầm")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4">
+            @Html.DeveloverTextBox(id: "Brand", label: "Nhãn hiệu", placeholder: "Nhãn hiệu")
+        </div>
+        <div class="col-sm-4">
+            @Html.DeveloverTextBox(id: "ModelNo", label: "Mẫu", placeholder: "Mẫu")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4">
+            @Html.DeveloverTextBox(id: "Color", label: "Màu sắc", placeholder: "Màu sắc")
+        </div>
+        <div class="col-sm-4">
+            @Html.DeveloverTextBox(id: "Capacity", label: "Sức chứa", placeholder: "Sức chứa")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-4">
+            @Html.DeveloverSelect2(id: "DefaultDriverId", label: "Mã trình điều khiển mặc định")
+        </div>
+        <div class="col-sm-4">
+            @Html.DeveloverSelect2(id: "DefaultDepartmentId", label: "Mã bộ phận mặc định")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

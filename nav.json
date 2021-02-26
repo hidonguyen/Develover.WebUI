@@ -66,6 +66,10 @@
           "href": "/unitofmeasure"
         },
         {
+          "title": "Phương tiện",
+          "href": "/vehicle"
+        },
+        {
           "title": "Chi phí phương tiện",
           "href": "/vehiclecost"
         },

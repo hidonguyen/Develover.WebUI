@@ -7,7 +7,7 @@ namespace Develover.WebUI.Models
 {
     public class VehicleViewModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string RegistrationNo { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime ManufactureDate { get; set; }
@@ -15,7 +15,7 @@ namespace Develover.WebUI.Models
         public string EngineNo { get; set; }
         public string ChassisNo { get; set; }
         public string Brand { get; set; }
-        public string Model { get; set; }
+        public string ModelNo { get; set; }
         public string Color { get; set; }
         public int Capacity { get; set; }
         public Guid? DefaultDriverId { get; set; }
@@ -25,6 +25,6 @@ namespace Develover.WebUI.Models
         public Guid? CurrentVehicleScheduleId { get; set; }
         public Guid? CurrentVehicleRepairId { get; set; }
         public string Note { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
     }
 }
