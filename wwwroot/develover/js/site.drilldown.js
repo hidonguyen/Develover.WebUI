@@ -17,6 +17,14 @@ function contractTypeDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function departmentDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/department/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -84,18 +92,7 @@ function baseCatalogDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function departmentDrillDownFormatter(data, type, row, meta) {
-    if (row.departmentId && data != undefined) {
-        return '<a href="/catalog/detaildepartment?id=' + row.departmentId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildepartment?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function documentCategoryDrillDownFormatter(data, type, row, meta) {
     if (row.documentCategoryId && data != undefined) {
         return '<a href="/catalog/detaildocumentCategory?id=' + row.documentCategoryId.toLowerCase() + '">' + data + '</a>';

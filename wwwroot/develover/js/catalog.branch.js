@@ -123,7 +123,19 @@
         //binding to control
         $("#Name", context).val(model.name);
         $("#Initial", context).val(model.initial);
+        $("#TaxNo", context).val(model.taxNo);
         $("#CompanyName", context).val(model.companyName);
+        $("#CompanyNameE", context).val(model.companyNameE);
+        $("#Address", context).val(model.address);
+        $("#Phone", context).val(model.phone);
+        $("#Fax", context).val(model.fax);
+        $("#Email", context).val(model.email);
+        $("#Website", context).val(model.webSite);
+        $("#Director", context).val(model.director);
+        $("#ChiefAccountant", context).val(model.chiefAccountant);
+        $("#Treasurer", context).val(model.treasurer);
+        $("#Note", context).val(model.note);
+        $("#Status", context).prop('checked', model.status);
     }
 
     let createModel = () => {
