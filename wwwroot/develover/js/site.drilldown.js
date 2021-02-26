@@ -62,6 +62,18 @@ function documentTypeDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function leaveTypeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/leavetype/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+
+
+
 
 
 
@@ -177,18 +189,7 @@ function holidayDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function leaveTypeDrillDownFormatter(data, type, row, meta) {
-    if (row.leaveTypeId && data != undefined) {
-        return '<a href="/catalog/detailleaveType?id=' + row.leaveTypeId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailleaveType?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function positionDrillDownFormatter(data, type, row, meta) {
     if (row.positionId && data != undefined) {
         return '<a href="/catalog/detailposition?id=' + row.positionId.toLowerCase() + '">' + data + '</a>';

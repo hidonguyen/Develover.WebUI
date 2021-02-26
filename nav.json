@@ -34,6 +34,10 @@
           "href": "/documenttype"
         },
         {
+          "title": "Loại nghỉ phép",
+          "href": "/leavetype"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
