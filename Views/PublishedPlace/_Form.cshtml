@@ -1,0 +1,17 @@
+﻿<form id="form-published-place" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên nơi xuất bản", placeholder: "Tên nơi xuất bản", validation: "required", validationMessage: "Tên nơi xuất bản không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

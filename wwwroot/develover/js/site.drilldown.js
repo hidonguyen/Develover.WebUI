@@ -89,6 +89,14 @@ function positionDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function publishedPlaceDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/publishedplace/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -167,18 +175,7 @@ function employeeDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function publishedPlaceDrillDownFormatter(data, type, row, meta) {
-    if (row.publishedPlaceId && data != undefined) {
-        return '<a href="/catalog/detailpublishedPlace?id=' + row.publishedPlaceId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailpublishedPlace?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function baseVoucherDrillDownFormatter(data, type, row, meta) {
     if (row.baseVoucherId && data != undefined) {
         return '<a href="/basevoucher/detail?id=' + row.baseVoucherId.toLowerCase() + '">' + data + '</a>';
