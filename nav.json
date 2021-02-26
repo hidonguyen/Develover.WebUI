@@ -38,6 +38,10 @@
           "href": "/leavetype"
         },
         {
+          "title": "Địa điểm",
+          "href": "/location"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }

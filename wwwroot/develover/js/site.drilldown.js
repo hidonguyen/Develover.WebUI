@@ -71,6 +71,14 @@ function leaveTypeDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function locationDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/location/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -252,18 +260,7 @@ function stockItemDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function locationDrillDownFormatter(data, type, row, meta) {
-    if (row.locationId && data != undefined) {
-        return '<a href="/catalog/detaillocation?id=' + row.locationId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaillocation?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
+
 function unitOfMeasureDrillDownFormatter(data, type, row, meta) {
     if (row.unitOfMeasureId && data != undefined) {
         return '<a href="/catalog/detailunitOfMeasure?id=' + row.unitOfMeasureId.toLowerCase() + '">' + data + '</a>';
