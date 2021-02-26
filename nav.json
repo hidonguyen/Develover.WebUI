@@ -26,6 +26,10 @@
           "href": "/documentcategory"
         },
         {
+          "title": "Trạng thái tài liệu",
+          "href": "/documentstatus"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }

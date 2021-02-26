@@ -44,6 +44,19 @@ function documentCategoryDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function documentStatusDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/documentstatus/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
+
+
+
+
 function userDrillDownFormatter(data, type, row, meta) {
     if (row.userId && data != undefined) {
         return '<a href="/identity/detailuser?id=' + row.userId.toLowerCase() + '">' + data + '</a>';
@@ -106,18 +119,6 @@ function baseCatalogDrillDownFormatter(data, type, row, meta) {
     }
 }
 
-function documentStatusDrillDownFormatter(data, type, row, meta) {
-    if (row.documentStatusId && data != undefined) {
-        return '<a href="/catalog/detaildocumentstatus?id=' + row.documentStatusId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detaildocumentstatus?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
 function documentTypeDrillDownFormatter(data, type, row, meta) {
     if (row.documentTypeId && data != undefined) {
         return '<a href="/catalog/detaildoccumenttype?id=' + row.documentTypeId.toLowerCase() + '">' + data + '</a>';
