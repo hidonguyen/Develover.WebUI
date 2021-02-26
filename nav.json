@@ -30,6 +30,10 @@
           "href": "/documentstatus"
         },
         {
+          "title": "Loại tài liệu",
+          "href": "/documenttype"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
