@@ -161,6 +161,15 @@ function vehicleDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function employeeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/employee/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
 
 
 
@@ -219,19 +228,6 @@ function baseCatalogDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/catalog/detailbaseCatalog?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
-function employeeDrillDownFormatter(data, type, row, meta) {
-    if (row.employeeId && data != undefined) {
-        return '<a href="/catalog/detailemployee?id=' + row.employeeId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/catalog/detailemployee?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;

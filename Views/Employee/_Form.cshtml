@@ -1,0 +1,121 @@
+﻿<form id="form-employee" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Code", label: "Mã", placeholder: "Mã", validation: "required", validationMessage: "Mã không được để trống!")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "RefCode", label: "Mã tham chiếu", placeholder: "Mã tham chiếu")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "FirstName", label: "Tên riêng", placeholder: "Tên riêng", validation: "required", validationMessage: "Tên riêng không được để trống!")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "MiddleName", label: "Tên đệm", placeholder: "Tên đệm", validation: "required", validationMessage: "Tên đệm không được để trống!")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "LastName", label: "Tên họ", placeholder: "Tên họ", validation: "required", validationMessage: "Tên họ không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Email", label: "Thư điện tử", placeholder: "Thư điện tử")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Phone", label: "Điện thoại", placeholder: "Điện thoại")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "AlternativePhone", label: "Điện thoại thay thế", placeholder: "Điện thoại thay thế")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Division", label: "Khu vực")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Position", label: "Vị trí")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "HireDate", label: "Ngày thuê", placeholder: "Ngày thuê")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "OriginalHireDate", label: "Ngày thuê gốc", placeholder: "Ngày thuê gốc")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "TerminationDate", label: "Ngày kết thúc hợp đồng", placeholder: "Ngày kết thúc hợp đồng")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "TerminationReason", label: "Lí do kết thúc hợp đồng", placeholder: "Lí do kết thúc hợp đồng")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "ReHireDate", label: "Ngày thuê lại", placeholder: "Ngày thuê lại")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Avatar", label: "Ảnh đại diện", placeholder: "Ảnh đại diện")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "IdentificationNo", label: "Nhận dạng", placeholder: "Nhận dạng")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "PersonalTaxCode", label: "Mã số thuế cá nhân", placeholder: "Mã số thuế cá nhân")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "DateOfBirth", label: "Ngày sinh", placeholder: "Ngày sinh")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "PlaceOfBirth", label: "Nơi sinh", placeholder: "Nơi sinh")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Gender", label: "Giới tính", placeholder: "Giới tính")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "MaritalStatus", label: "Tình trạng hôn nhân", placeholder: "Tình trạng hôn nhân")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "EthnicGroup", label: "Dân tộc", placeholder: "Dân tộc")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "PermanentAddress", label: "Địa chỉ thường trú", placeholder: "Địa chỉ thường trú")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "TemporaryAddress", label: "Địa chỉ tạm trú", placeholder: "Địa chỉ tạm trú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "SocialInsuranceNo", label: "Bảo hiểm xã hội", placeholder: "Bảo hiểm xã hội")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "SocialInsuranceDate", label: "Ngày bảo hiểm xã hội", placeholder: "Ngày bảo hiểm xã hội")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "HealthInsuranceNo", label: "Bảo hiểm y tế", placeholder: "Bảo hiểm y tế")
+        </div>
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "HealthInsuranceDate", label: "Ngày bảo hiểm y tế", placeholder: "Ngày bảo hiểm y tế")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>
