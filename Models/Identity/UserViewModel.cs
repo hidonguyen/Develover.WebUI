@@ -1,8 +1,10 @@
-﻿namespace Develover.WebUI.Models
+﻿using System;
+
+namespace Develover.WebUI.Models
 {
     public class UserViewModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
         public string Initial { get; set; }
@@ -10,8 +12,11 @@
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string SelectedRoles { get; set; }
+        public string SelectedBranches { get; set; }
+
         public string Note { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
     }
 }

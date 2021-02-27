@@ -94,6 +94,10 @@
           "href": "/role"
         },
         {
+          "title": "Người dùng",
+          "href": "/user"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
