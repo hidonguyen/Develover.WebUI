@@ -1,12 +1,14 @@
-﻿namespace Develover.WebUI.Models
+﻿using System;
+
+namespace Develover.WebUI.Models
 {
     public class CurrencyViewModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public double ExchangeRate { get; set; }
         public string Note { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
 
     }
 }

@@ -170,6 +170,15 @@ function employeeDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function currencyDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/currency/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
 
 
 
@@ -203,18 +212,6 @@ function permissionDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/identity/detailpermission?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function currencyDrillDownFormatter(data, type, row, meta) {
-    if (row.currencyId && data != undefined) {
-        return '<a href="/identity/detailcurrency?id=' + row.currencyId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/identity/detailcurrency?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;

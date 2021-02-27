@@ -82,6 +82,10 @@
           "href": "/vehicleusepurpose"
         },
         {
+          "title": "Tiền tệ",
+          "href": "/currency"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
