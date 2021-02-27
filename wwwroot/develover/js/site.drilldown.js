@@ -188,6 +188,14 @@ function permissionDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function roleDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/role/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
 
 
 
@@ -197,18 +205,6 @@ function userDrillDownFormatter(data, type, row, meta) {
     } else {
         if (row.id && data != undefined) {
             return '<a href="/identity/detailuser?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-function roleDrillDownFormatter(data, type, row, meta) {
-    if (row.roleId && data != undefined) {
-        return '<a href="/identity/detailrole?id=' + row.roleId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/identity/detailrole?id=' + row.id.toLowerCase() + '">' + data + '</a>';
         }
         else {
             return data;

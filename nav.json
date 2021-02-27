@@ -90,6 +90,10 @@
           "href": "/permission"
         },
         {
+          "title": "Vai trò",
+          "href": "/role"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
