@@ -8,7 +8,13 @@ namespace Develover.WebUI.Models
     public class EmployeeViewModel
     {
         public Guid Id { get; set; }
+        public string Code { get; set; }
+        public string RefCode { get; set; }
         public string FullName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Avatar { get; set; }
 
         //EmployeeIdentification
         public string IdentificationNo { get; set; }
@@ -32,6 +38,11 @@ namespace Develover.WebUI.Models
         public string Phone { get; set; }
 
         public DateTime? HireDate { get; set; }
+        public DateTime? OriginalHireDate { get; set; }
+        public string TerminationReason { get; set; }
+        public DateTime? TerminationDate { get; set; }
+        public DateTime? ReHireDate { get; set; }
+
 
         public string Division { get; set; }
         public string Position { get; set; }
