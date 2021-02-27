@@ -1,0 +1,22 @@
+﻿<form id="form-permission" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên quyền", placeholder: "Tên quyền", validation: "required", validationMessage: "Tên vị trí không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "SequenceNo", label: "Trình tự", placeholder: "Trình tự")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Description", label: "Mô tả", placeholder: "Mô tả")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>

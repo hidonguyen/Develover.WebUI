@@ -179,6 +179,15 @@ function currencyDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function permissionDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/permission/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
 
 
 
@@ -206,19 +215,6 @@ function roleDrillDownFormatter(data, type, row, meta) {
         }
     }
 }
-function permissionDrillDownFormatter(data, type, row, meta) {
-    if (row.permissionId && data != undefined) {
-        return '<a href="/identity/detailpermission?id=' + row.permissionId.toLowerCase() + '">' + data + '</a>';
-    } else {
-        if (row.id && data != undefined) {
-            return '<a href="/identity/detailpermission?id=' + row.id.toLowerCase() + '">' + data + '</a>';
-        }
-        else {
-            return data;
-        }
-    }
-}
-
 function baseCatalogDrillDownFormatter(data, type, row, meta) {
     if (row.baseCatalogId && data != undefined) {
         return '<a href="/catalog/detailbaseCatalog?id=' + row.baseCatalogId.toLowerCase() + '">' + data + '</a>';

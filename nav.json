@@ -86,6 +86,10 @@
           "href": "/currency"
         },
         {
+          "title": "Quyền",
+          "href": "/permission"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
