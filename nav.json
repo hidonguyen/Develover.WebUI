@@ -98,6 +98,10 @@
           "href": "/user"
         },
         {
+          "title": "Đổi mật khẩu",
+          "href": "/changepassword"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
