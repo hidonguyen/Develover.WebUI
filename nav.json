@@ -110,6 +110,10 @@
           "href": "/allowancedeductiontype"
         },
         {
+          "title": "Đăng ký loại định mức KPI cho tổ",
+          "href": "/kpiregistration"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }

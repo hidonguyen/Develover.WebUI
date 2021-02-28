@@ -1,0 +1,17 @@
+﻿<form id="form-kpi-registration" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSelect2(id: "DivisionId", label: "Tổ")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "KPIType", label: "Loại định mức", placeholder: "Loại định mức")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "IssueDate", label: "Ngày đăng ký", placeholder: "Ngày đăng ký")
+        </div>
+    </div>
+</form>
