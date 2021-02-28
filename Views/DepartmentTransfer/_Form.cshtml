@@ -1,0 +1,32 @@
+﻿<form id="form-department-transfer" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSelect2(id: "EmployeeId", label: "Nhân viên")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "No", label: "Số quyết định", placeholder: "Số quyết định")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "EffectiveDate", label: "Ngày hiệu lực", placeholder: "Ngày hiệu lực")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSelect2(id: "DivisionId", label: "Tổ")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextArea(id: "Note", label: "Ghi chú", placeholder: "Ghi chú")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>
