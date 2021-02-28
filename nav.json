@@ -106,6 +106,10 @@
           "href": "/attendancetype"
         },
         {
+          "title": "Các khoản phụ cấp, giảm trừ",
+          "href": "/allowancedeductiontype"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }
