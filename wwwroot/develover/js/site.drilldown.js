@@ -89,6 +89,15 @@ function positionDrillDownFormatter(data, type, row, meta) {
     }
 }
 
+function attendanceTypeDrillDownFormatter(data, type, row, meta) {
+    if (row.id && data) {
+        return '<a href="/attendancetype/detail?id=' + row.id + '">' + data + '</a>';
+    }
+    else {
+        return data;
+    }
+}
+
 function publishedPlaceDrillDownFormatter(data, type, row, meta) {
     if (row.id && data) {
         return '<a href="/publishedplace/detail?id=' + row.id + '">' + data + '</a>';

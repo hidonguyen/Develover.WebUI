@@ -102,6 +102,10 @@
           "href": "/changepassword"
         },
         {
+          "title": "Loại chấm công",
+          "href": "/attendancetype"
+        },
+        {
           "title": "Khai báo tiếp ở đây",
           "href": "#"
         }

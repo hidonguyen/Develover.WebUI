@@ -1,0 +1,27 @@
+﻿<form id="form-attendance-type" class="form was-validated">
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Name", label: "Tên loại chấm công", placeholder: "Tên loại chấm công", validation: "required", validationMessage: "Tên loại chấm công không được để trống!")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "Multiplier", label: "Hệ số nhân", placeholder: "Hệ số nhân")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "HasMealAllowance", label: "Có phụ cấp cơm", placeholder: "Có phụ cấp cơm")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverTextBox(id: "IsAnnualLeave", label: "Tính nghỉ phép năm", placeholder: "Tính nghỉ phép năm")
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            @Html.DeveloverSwitch("Status", "Sử dụng")
+        </div>
+    </div>
+</form>
