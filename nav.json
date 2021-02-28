@@ -6,6 +6,10 @@
       "icon": "fal fa-info-circle",
       "items": [
         {
+          "title": "Khai báo loại định mức KPI",
+          "href": "/kpitype"
+        },
+        {
           "title": "Chi nhánh",
           "href": "/branches"
         },
